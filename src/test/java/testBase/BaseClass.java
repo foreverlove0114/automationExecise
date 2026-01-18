@@ -15,8 +15,7 @@ public class BaseClass {
     public void setup(){
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get("https://automationexercise.com/");
-        driver.manage().window().maximize();
+
 
     }
 
