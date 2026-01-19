@@ -1,0 +1,12 @@
+<suite name="Suite">
+<!--    <listeners>-->
+<!--        <listener class-name="utilities.ExtentReportManager"/>-->
+<!--    </listeners>-->
+    <test thread-count="5" name="Test">
+        <parameter name="os" value="Windows"/>
+        <parameter name="browser" value="firefox"/>
+        <classes>
+            <class name="testCases.TC1_registerUser"/>
+        </classes>
+    </test>
+</suite>
