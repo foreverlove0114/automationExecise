@@ -1,4 +1,7 @@
 <suite name="Suite" thread-count="5" parallel="tests">
+    <listeners>
+        <listener class-name="utilities.ExtentReportManager"/>
+    </listeners>
     <test name="chrometest">
         <parameter name="os" value="Windows"/>
         <parameter name="browser" value="chrome"/>

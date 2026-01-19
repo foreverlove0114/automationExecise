@@ -36,7 +36,7 @@ public class BasePage {
 //    }
 
     protected void clickElementJS(WebElement element) {
-        waitForElementClickable(element);
+        waitForElementVisible(element);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
     }

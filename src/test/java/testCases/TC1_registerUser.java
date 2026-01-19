@@ -8,14 +8,14 @@ public class TC1_registerUser extends testBase.BaseClass{
 
     @Test
     public void register_user(){
-        HomePage hp = new HomePage(driver);
+        HomePage hp = new HomePage(getDriver());
         //3. Verify that home page is visible successfully
         System.out.println(hp.isHomePageVisible());
         logger.info("***** Starting TC1_registerUser *****");
         //4. Click on 'Signup / Login' button
         hp.clickSignupLogin();
         //5. Verify 'New User Signup!' is visible
-        RegisterLoginPage rlp = new RegisterLoginPage(driver);
+        RegisterLoginPage rlp = new RegisterLoginPage(getDriver());
         System.out.println(rlp.isSignupTitleVisible());
         logger.info("***** Navigated to RegisterLoginPage *****");
         //6. Enter name and email address
@@ -23,7 +23,7 @@ public class TC1_registerUser extends testBase.BaseClass{
         //7. Click 'Signup' button
         rlp.clickSignupButton();
         //8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
-        AccountInfoPage aip = new AccountInfoPage(driver);
+        AccountInfoPage aip = new AccountInfoPage(getDriver());
         System.out.println(aip.isEnterAccountInfoTitleVisible());
         logger.info("***** Navigated to AccountInfoPage *****");
         //9. Fill details: Title, Name, Email, Password, Date of birth
@@ -44,19 +44,19 @@ public class TC1_registerUser extends testBase.BaseClass{
         //13. Click 'Create Account button'
         aip.clickCreateAccountButton();
         //14. Verify that 'ACCOUNT CREATED!' is visible
-        AccountCreatedPage acp = new AccountCreatedPage(driver);
+        AccountCreatedPage acp = new AccountCreatedPage(getDriver());
         System.out.println(acp.isAccountCreatedTitleVisible());
         logger.info("***** Navigated to AccountCreatedPage *****");
         //15. Click 'Continue' button
         acp.clickButtonContinue();
         //16. Verify that 'Logged in as username' is visible
         //17. Click 'Delete Account' button
-        HomePage hp1 = new HomePage(driver);
+        HomePage hp1 = new HomePage(getDriver());
         if(hp1.isLinkLoginExist()){
             hp1.clickDeleteAccount();
         }
         //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
-        AccountDeletedPage adp = new AccountDeletedPage(driver);
+        AccountDeletedPage adp = new AccountDeletedPage(getDriver());
         System.out.println(adp.isAccountDeletedTitleVisible());
         logger.info("***** Navigated to AccountDeletedPage *****");
         adp.clickButtonContinue();
