@@ -1,10 +1,19 @@
 <suite name="Suite">
-    <listeners>
-        <listener class-name="utilities.ExtentReportManager"/>
-    </listeners>
-    <test thread-count="5" name="Test">
-        <parameter name="os" value="Windows"/>
+<!--    <listeners>-->
+<!--        <listener class-name="utilities.ExtentReportManager"/>-->
+<!--    </listeners>-->
+    <test thread-count="5" name="Tests">
+        <parameter name="os" value="windows"/>
         <parameter name="browser" value="chrome"/>
+
+        <groups>
+            <run>
+                <include name="Authentication"/>
+                <exclude name="Login_Logout"/>
+<!--                <include name="Registration"/>-->
+<!--                <include name="Login_Logout"/>-->
+            </run>
+        </groups>
         <classes>
             <class name="testCases.Authentication.TC1_registerUser"/>
             <class name="testCases.Authentication.TC2_loginValidUser"/>

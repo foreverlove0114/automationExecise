@@ -17,4 +17,9 @@ public class TestData {
     public static final String STATE = "Tokyo";
     public static final String CITY = "Tokyo";
     public static final String ZIPCODE = "12345";
+
+    //LoginCredential
+    public static final String EMAIL = "jiexiang0113@gmail.com"; //valid email
+    public static final String INVALID_EMAIL = "jiexiang@gmail.com";
+    public static final String INVALID_PASSWORD = "1234567890";
 }

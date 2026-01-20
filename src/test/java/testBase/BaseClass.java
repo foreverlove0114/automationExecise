@@ -40,7 +40,7 @@ public class BaseClass {
     }
 
     @Parameters({"os","browser"})
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true) //规则：在自动化框架中，所有的配置方法（@BeforeSuite, @BeforeClass, @BeforeMethod 等）都应该养成加上 (alwaysRun = true) 的习惯。
     public void setup(String os,String browser){
         logger = LogManager.getLogger(this.getClass());
         WebDriver driver = null; // 此时是局部变量
@@ -61,7 +61,7 @@ public class BaseClass {
 
     }
 
-    @AfterMethod
+    @AfterMethod(alwaysRun = true)
     public void tearDown(){
         getDriver().quit();
         threadLocalDriver.remove(); // 彻底清理当前线程的副本
@@ -88,10 +88,13 @@ public class BaseClass {
         TakesScreenshot takesScreenshot = (TakesScreenshot) getDriver();
         File sourceFile = takesScreenshot.getScreenshotAs(OutputType.FILE);
 
-        String targetFilePath = System.getProperty("user.dir") + "\\screenshots\\" + tname + "_" + timeStamp + ".png";
+//        String targetFilePath = System.getProperty("user.dir") + "\\screenshots\\" + tname + "_" + timeStamp + ".png";
+        // 使用正斜杠 / 适配所有系统
+        String targetFilePath = System.getProperty("user.dir") + "/screenshots/" + tname + "_" + timeStamp + ".png";
         File targetFile = new File(targetFilePath);
 
         sourceFile.renameTo(targetFile);
         return targetFilePath;
     }
+
 }

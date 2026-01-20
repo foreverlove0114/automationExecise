@@ -6,7 +6,7 @@
         <parameter name="os" value="Windows"/>
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testCases.TC1_registerUser"/>
+            <class name="testCases.Authentication.TC1_registerUser"/>
         </classes>
     </test>
     <!--  Test  -->
@@ -14,7 +14,7 @@
         <parameter name="os" value="Windows"/>
         <parameter name="browser" value="edge"/>
         <classes>
-            <class name="testCases.TC1_registerUser"/>
+            <class name="testCases.Authentication.TC1_registerUser"/>
         </classes>
     </test>
     <!--  Test  -->
@@ -22,7 +22,7 @@
         <parameter name="os" value="Windows"/>
         <parameter name="browser" value="firefox"/>
         <classes>
-            <class name="testCases.TC1_registerUser"/>
+            <class name="testCases.Authentication.TC1_registerUser"/>
         </classes>
     </test>
 </suite>

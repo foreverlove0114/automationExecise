@@ -1,30 +1,29 @@
-package testCases;
+package testCases.Authentication;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.*;
 import utilities.TestData;
 
 public class TC1_registerUser extends testBase.BaseClass{
 
-    @Test
+    @Test(groups = {"Authentication","Registration"})
     public void register_user(){
+        logger.info("***** Starting TC1_registerUser *****");
         HomePage hp = new HomePage(getDriver());
         //3. Verify that home page is visible successfully
-        System.out.println(hp.isHomePageVisible());
-        logger.info("***** Starting TC1_registerUser *****");
+        Assert.assertTrue(hp.isHomePageVisible());
         //4. Click on 'Signup / Login' button
-        hp.clickSignupLogin();
+        RegisterLoginPage rlp = hp.clickSignupLogin();
         //5. Verify 'New User Signup!' is visible
-        RegisterLoginPage rlp = new RegisterLoginPage(getDriver());
-        System.out.println(rlp.isSignupTitleVisible());
+        Assert.assertTrue(rlp.isSignupTitleVisible());
         logger.info("***** Navigated to RegisterLoginPage *****");
         //6. Enter name and email address
         rlp.enterNameAndEmail(randonString(),randomAlphaNumeric() + "gmail.com");
         //7. Click 'Signup' button
-        rlp.clickSignupButton();
+        AccountInfoPage aip = rlp.clickSignupButton();
         //8. Verify that 'ENTER ACCOUNT INFORMATION' is visible
-        AccountInfoPage aip = new AccountInfoPage(getDriver());
-        System.out.println(aip.isEnterAccountInfoTitleVisible());
+        Assert.assertTrue(aip.isEnterAccountInfoTitleVisible());
         logger.info("***** Navigated to AccountInfoPage *****");
         //9. Fill details: Title, Name, Email, Password, Date of birth
         //10. Select checkbox 'Sign up for our newsletter!'
@@ -42,22 +41,18 @@ public class TC1_registerUser extends testBase.BaseClass{
                 TestData.ZIPCODE,
                 randomNumber());
         //13. Click 'Create Account button'
-        aip.clickCreateAccountButton();
+        AccountCreatedPage acp = aip.clickCreateAccountButton();
         //14. Verify that 'ACCOUNT CREATED!' is visible
-        AccountCreatedPage acp = new AccountCreatedPage(getDriver());
-        System.out.println(acp.isAccountCreatedTitleVisible());
+        Assert.assertTrue(acp.isAccountCreatedTitleVisible());
         logger.info("***** Navigated to AccountCreatedPage *****");
         //15. Click 'Continue' button
-        acp.clickButtonContinue();
+        hp = acp.clickButtonContinue();
         //16. Verify that 'Logged in as username' is visible
         //17. Click 'Delete Account' button
-        HomePage hp1 = new HomePage(getDriver());
-        if(hp1.isLinkLoginExist()){
-            hp1.clickDeleteAccount();
-        }
+        Assert.assertTrue(hp.isLinkLoginExist());
+        AccountDeletedPage adp = hp.clickDeleteAccount();
         //18. Verify that 'ACCOUNT DELETED!' is visible and click 'Continue' button
-        AccountDeletedPage adp = new AccountDeletedPage(getDriver());
-        System.out.println(adp.isAccountDeletedTitleVisible());
+        Assert.assertTrue(adp.isAccountDeletedTitleVisible());
         logger.info("***** Navigated to AccountDeletedPage *****");
         adp.clickButtonContinue();
     }

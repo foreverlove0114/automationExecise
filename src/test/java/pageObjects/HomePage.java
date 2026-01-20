@@ -21,19 +21,29 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//a[normalize-space()='Delete Account']")
     private WebElement linkDeleteAccount;
 
+    @FindBy(xpath = "//a[normalize-space()='Logout']")
+    private WebElement linkLogout;
+
     public boolean isHomePageVisible(){
         return isElementPresent(HomePageTitle);
     }
 
-    public void clickSignupLogin(){
+    public RegisterLoginPage clickSignupLogin(){
         clickElementJS(Signup_Login_Link);
+        return new RegisterLoginPage(driver);
     }
 
     public boolean isLinkLoginExist(){
         return isElementPresent(linkCheckLogin);
     }
 
-    public void clickDeleteAccount(){
+    public AccountDeletedPage clickDeleteAccount(){
         clickElementJS(linkDeleteAccount);
+        return new AccountDeletedPage(driver);
+    }
+
+    public RegisterLoginPage logout(){
+        clickElementJS(linkLogout);
+        return new RegisterLoginPage(driver);
     }
 }

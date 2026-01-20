@@ -43,7 +43,9 @@ public class ExtentReportManager implements ITestListener {
 
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());// time stamp
         repName = "Test-Report-" + timeStamp + ".html";
-        sparkReporter = new ExtentSparkReporter(".\\reports\\" + repName);// specify location of the report
+//        sparkReporter = new ExtentSparkReporter(".\\reports\\" + repName);// specify location of the report
+        // 推荐写法：自动适配系统
+        sparkReporter = new ExtentSparkReporter(System.getProperty("user.dir") + "/reports/" + repName);
 
         sparkReporter.config().setDocumentTitle("opencart Automation Report"); // Title of report
         sparkReporter.config().setReportName("opencart Functional Testing"); // name of the report
@@ -100,43 +102,37 @@ public class ExtentReportManager implements ITestListener {
         test.log(Status.INFO, result.getThrowable().getMessage());
     }
 
+//    public void onFinish(ITestContext testContext) {
+//
+//        extent.flush();
+//
+//        String pathOfExtentReport = System.getProperty("user.dir")+"\\reports\\"+repName;
+//        File extentReport = new File(pathOfExtentReport);
+//
+//        try {
+//            Desktop.getDesktop().browse(extentReport.toURI());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     public void onFinish(ITestContext testContext) {
+        extent.flush(); // 确保数据写入磁盘
 
-        extent.flush();
-
-        String pathOfExtentReport = System.getProperty("user.dir")+"\\reports\\"+repName;
+        String pathOfExtentReport = System.getProperty("user.dir") + "/reports/" + repName;
         File extentReport = new File(pathOfExtentReport);
 
         try {
-            Desktop.getDesktop().browse(extentReport.toURI());
+            if (Desktop.isDesktopSupported()) {
+                Desktop.getDesktop().browse(extentReport.toURI());
+            } else {
+                // Mac 特有的命令行打开方式
+                Runtime.getRuntime().exec("open " + pathOfExtentReport);
+            }
         } catch (IOException e) {
+            System.out.println("无法自动打开报告，请手动查看: " + pathOfExtentReport);
             e.printStackTrace();
         }
-
-
-		/*  try {
-			  URL url = new  URL("file:///"+System.getProperty("user.dir")+"\\reports\\"+repName);
-
-		  // Create the email message
-		  ImageHtmlEmail email = new ImageHtmlEmail();
-		  email.setDataSourceResolver(new DataSourceUrlResolver(url));
-		  email.setHostName("smtp.googlemail.com");
-		  email.setSmtpPort(465);
-		  email.setAuthenticator(new DefaultAuthenticator("pavanoltraining@gmail.com","password"));
-		  email.setSSLOnConnect(true);
-		  email.setFrom("pavanoltraining@gmail.com"); //Sender
-		  email.setSubject("Test Results");
-		  email.setMsg("Please find Attached Report....");
-		  email.addTo("pavankumar.busyqa@gmail.com"); //Receiver
-		  email.attach(url, "extent report", "please check report...");
-		  email.send(); // send the email
-		  }
-		  catch(Exception e)
-		  {
-			  e.printStackTrace();
-			  }
-		 */
-
     }
 
 }

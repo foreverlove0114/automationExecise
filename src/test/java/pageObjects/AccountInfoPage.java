@@ -103,7 +103,8 @@ public class AccountInfoPage extends BasePage{
         sendKeysToElement(mobileInput,mobile);
     }
 
-    public void clickCreateAccountButton(){
+    public AccountCreatedPage clickCreateAccountButton(){
         clickElementJS(buttonCreateAccount);
+        return new AccountCreatedPage(driver);
     }
 }
