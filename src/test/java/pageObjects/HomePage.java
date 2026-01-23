@@ -24,6 +24,15 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//a[normalize-space()='Logout']")
     private WebElement linkLogout;
 
+    @FindBy(xpath = "//a[normalize-space()='Contact us']")
+    private WebElement linkContactUs;
+
+    @FindBy(xpath = "//div[@class='item active']//button[@type='button'][normalize-space()='Test Cases']")
+    private WebElement buttonTestCases;
+
+    @FindBy(xpath = "//a[@href='/products']")
+    private WebElement linkProducts;
+
     public boolean isHomePageVisible(){
         return isElementPresent(HomePageTitle);
     }
@@ -45,5 +54,20 @@ public class HomePage extends BasePage{
     public RegisterLoginPage logout(){
         clickElementJS(linkLogout);
         return new RegisterLoginPage(driver);
+    }
+
+    public ContactUsPage clickContactUs(){
+        clickElementJS(linkContactUs);
+        return new ContactUsPage(driver);
+    }
+
+    public TestCasesPage clickNavigateToTestCasesPage(){
+        clickElementJS(buttonTestCases);
+        return new TestCasesPage(driver);
+    }
+
+    public ProductsPage clickNavigateToProductPage(){
+        clickElementJS(linkProducts);
+        return new ProductsPage(driver);
     }
 }

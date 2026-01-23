@@ -22,4 +22,11 @@ public class TestData {
     public static final String EMAIL = "jiexiang0113@gmail.com"; //valid email
     public static final String INVALID_EMAIL = "jiexiang@gmail.com";
     public static final String INVALID_PASSWORD = "1234567890";
+
+    //ContactUsPage
+    public static final String SUBJECT = "testing";
+    public static final String MESSAGE = "testing message";
+
+    //ProductPage
+    public static final String searchProduct = "Blue Top";
 }

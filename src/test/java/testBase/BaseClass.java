@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -20,6 +21,7 @@ import java.util.Date;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.testng.annotations.Parameters;
+import pageObjects.HomePage;
 
 
 public class BaseClass {
@@ -95,6 +97,14 @@ public class BaseClass {
 
         sourceFile.renameTo(targetFile);
         return targetFilePath;
+    }
+
+    public void initializeHomePage(){
+        logger.info("***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****");
+        HomePage hp = new HomePage(getDriver());
+        //3. Verify that home page is visible successfully
+        Assert.assertTrue(hp.isHomePageVisible());
+        logger.info("***** HomePage Visible *****");
     }
 
 }
