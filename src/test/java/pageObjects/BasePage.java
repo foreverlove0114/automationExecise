@@ -80,4 +80,10 @@ public class BasePage {
         // 4. 点击 OK (Accept) 或者 Cancel (Dismiss)
         alert.accept();// 相当于点击 OK
     }
+
+    public void scrollDownUntilText(WebElement element){
+        waitForElementVisible(element);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView()",element);
+    }
 }

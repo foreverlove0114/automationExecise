@@ -32,6 +32,9 @@ public class ProductsPage extends BasePage{
     @FindBy(xpath = "//div[@class='productinfo text-center']//p[contains(text(),'Blue Top')]")
     private WebElement productName;
 
+    @FindBy(xpath = "//div[@class='productinfo text-center']//p[contains(text(),'Blue Top')]")
+    private WebElement productName;
+
     public boolean checkHeadingProductPagePresent(){
         return isElementPresent(headingProductPage);
     }

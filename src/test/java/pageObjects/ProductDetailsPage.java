@@ -35,4 +35,6 @@ public class ProductDetailsPage extends BasePage{
                 isElementPresent(brandTitle) &&
                 isElementPresent(priceText);
     }
+
+
 }

@@ -13,9 +13,11 @@
 <!--            <class name="testCases.Authentication.TC5_registerDuplicateUser"/>-->
 <!--            <class name="testCases.TC6_contactUsForm"/>-->
 <!--            <class name="testCases.TC7_verifyTestCasesPage"/>-->
-
-            <class name="testCases.TC8_verifyAllProductsAndProductDetails"/>
+<!--            <class name="testCases.TC8_verifyAllProductsAndProductDetails"/>-->
 <!--            <class name="testCases.TC9_searchProduct"/>-->
+<!--            <class name="testCases.TC10_verifyHomeSubscription"/>-->
+            <class name="testCases.TC11_verifyHomeSubscription"/>
+
         </classes>
     </test>
 </suite>
