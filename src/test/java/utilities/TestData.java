@@ -29,4 +29,11 @@ public class TestData {
 
     //ProductPage
     public static final String searchProduct = "Blue Top";
+
+    //PaymentInfo
+    public static final String nameOnCard = "YJX";
+    public static final String cardNum = "1234567890";
+    public static final String cvc = "999";
+    public static final String ExpirationMM = "12";
+    public static final String ExpirationYYYY = "2024";
 }

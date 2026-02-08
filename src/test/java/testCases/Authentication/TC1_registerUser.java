@@ -55,5 +55,6 @@ public class TC1_registerUser extends testBase.BaseClass{
         Assert.assertTrue(adp.isAccountDeletedTitleVisible());
         logger.info("***** Navigated to AccountDeletedPage *****");
         adp.clickButtonContinue();
+
     }
 }

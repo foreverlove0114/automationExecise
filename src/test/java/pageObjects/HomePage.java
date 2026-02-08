@@ -1,8 +1,12 @@
 package pageObjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+import java.util.Random;
 
 public class HomePage extends BasePage{
     public HomePage(WebDriver driver) {
@@ -47,6 +51,9 @@ public class HomePage extends BasePage{
 
     @FindBy(xpath = "//a[normalize-space()='Cart']")
     private WebElement linkCart;
+
+    @FindBy(xpath = "//div[@class='choose']//a")
+    private List<WebElement> allViewProductBtns;
 
     public boolean isHomePageVisible(){
         return isElementPresent(HomePageTitle);
@@ -107,4 +114,17 @@ public class HomePage extends BasePage{
         clickElementJS(linkCart);
         return new CartPage(driver);
     }
+
+    public ProductDetailsPage clickRandomViewProduct(){
+        Random random = new Random();
+        // 2. 使用 Random 类生成随机索引
+        int randomIndex = random.nextInt(allViewProductBtns.size());
+        // 3. 获取随机出的那个按钮
+        WebElement randomBtn = allViewProductBtns.get(randomIndex);
+        clickElementJS(randomBtn);
+
+        return new ProductDetailsPage(driver);
+    }
+
+
 }

@@ -1,9 +1,14 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class ProductsPage extends BasePage{
@@ -31,6 +36,23 @@ public class ProductsPage extends BasePage{
 
     @FindBy(xpath = "//div[@class='productinfo text-center']//p[contains(text(),'Blue Top')]")
     private WebElement productName;
+
+//    @FindBy(xpath = "(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]")
+//    private WebElement addFirstItemIntoCartButton;
+
+    @FindBy(xpath = "//button[normalize-space()='Continue Shopping']")
+    private WebElement buttonContinueShopping;
+
+//    @FindBy(xpath = "//div[@class='features_items']//div[@class='col-sm-4'][%d]")
+//    private WebElement productWrapper;
+
+    private final String productWrapperXpath = "//div[@class='features_items']//div[@class='col-sm-4'][%d]";
+    private final String addToCartBtnXpath = "(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]";
+
+    @FindBy(xpath = "//a[text()=' Cart']")
+    private WebElement cartLink;
+
+
 
 
     public boolean checkHeadingProductPagePresent(){
@@ -69,4 +91,21 @@ public class ProductsPage extends BasePage{
     public String getProductName(){
         return productName.getText();
     }
+
+    public boolean isButtonContinueShoppingExist(){
+        try {
+            WebElement btn = wait.until(ExpectedConditions.visibilityOf(buttonContinueShopping));
+            assert btn != null;
+            return btn.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public CartPage navigateToCart(){
+        clickElementJS(cartLink);
+        return new CartPage(driver);
+    }
+
+
 }

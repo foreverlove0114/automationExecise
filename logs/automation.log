@@ -1,6 +1,72 @@
-2026-01-24 16:42:57 INFO  TC10_verifySubscription:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-01-24 16:42:57 INFO  TC10_verifySubscription:107 - ***** HomePage Visible *****
-2026-01-24 16:44:05 INFO  TC10_verifySubscription:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-01-24 16:44:05 INFO  TC10_verifySubscription:107 - ***** HomePage Visible *****
-2026-01-24 17:19:26 INFO  TC11_verifyHomeSubscription:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-01-24 17:19:26 INFO  TC11_verifyHomeSubscription:107 - ***** HomePage Visible *****
+2026-02-08 11:02:48 INFO  TC1_registerUser:12 - ***** Starting TC1_registerUser *****
+2026-02-08 11:02:50 INFO  TC1_registerUser:20 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:02:56 INFO  TC1_registerUser:27 - ***** Navigated to AccountInfoPage *****
+2026-02-08 11:03:04 INFO  TC1_registerUser:47 - ***** Navigated to AccountCreatedPage *****
+2026-02-08 11:03:10 INFO  TC1_registerUser:56 - ***** Navigated to AccountDeletedPage *****
+2026-02-08 11:03:21 INFO  TC2_loginValidUser:15 - ***** Starting TC2_loginValidUser *****
+2026-02-08 11:03:22 INFO  TC2_loginValidUser:23 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:03:52 INFO  TC3_loginInvalidUser:14 - ***** Starting TC3_LoginInvalidUser *****
+2026-02-08 11:03:53 INFO  TC3_loginInvalidUser:22 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:04:00 INFO  TC4_logoutUser:14 - ***** testCases.Authentication.TC4_logoutUser *****
+2026-02-08 11:04:02 INFO  TC4_logoutUser:22 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:04:12 INFO  TC5_registerDuplicateUser:14 - ***** testCases.Authentication.TC5_registerDuplicateUser *****
+2026-02-08 11:04:15 INFO  TC5_registerDuplicateUser:22 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:04:24 INFO  TC6_contactUsForm:16 - ***** testCases.Authentication.TC6_contactUsForm *****
+2026-02-08 11:04:24 INFO  TC6_contactUsForm:20 - ***** HomePage Visible *****
+2026-02-08 11:04:25 INFO  TC6_contactUsForm:25 - ***** Text Get In Touch Present *****
+2026-02-08 11:04:27 INFO  TC6_contactUsForm:36 - ***** Form Submitted Successfully *****
+2026-02-08 11:04:28 INFO  TC6_contactUsForm:40 - ***** HomePage Visible *****
+2026-02-08 11:04:33 INFO  TC7_verifyTestCasesPage:13 - ***** testCases.Authentication.TC7_verifyTestCasesPage *****
+2026-02-08 11:04:33 INFO  TC7_verifyTestCasesPage:17 - ***** HomePage Visible *****
+2026-02-08 11:04:38 INFO  TC7_verifyTestCasesPage:22 - ***** Page Navigated To TestCasesPage *****
+2026-02-08 11:04:44 INFO  TC8_verifyAllProductsAndProductDetails:14 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:04:44 INFO  TC8_verifyAllProductsAndProductDetails:18 - ***** HomePage Visible *****
+2026-02-08 11:04:48 INFO  TC8_verifyAllProductsAndProductDetails:25 - ***** Product lists is visible *****
+2026-02-08 11:04:49 INFO  TC8_verifyAllProductsAndProductDetails:30 - All product info are visible
+2026-02-08 11:04:58 INFO  TC9_searchProduct:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:04:58 INFO  TC9_searchProduct:107 - ***** HomePage Visible *****
+2026-02-08 11:05:09 INFO  TC10_verifyHomeSubscription:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:05:09 INFO  TC10_verifyHomeSubscription:107 - ***** HomePage Visible *****
+2026-02-08 11:05:15 INFO  TC11_verifyHomeSubscription:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:05:15 INFO  TC11_verifyHomeSubscription:107 - ***** HomePage Visible *****
+2026-02-08 11:05:25 INFO  TC12_addProduct:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:05:25 INFO  TC12_addProduct:107 - ***** HomePage Visible *****
+2026-02-08 11:05:39 INFO  TC13_verifyProductQuantity:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:05:39 INFO  TC13_verifyProductQuantity:107 - ***** HomePage Visible *****
+2026-02-08 11:05:48 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 11:05:48 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 11:08:00 INFO  TC2_loginValidUser:15 - ***** Starting TC2_loginValidUser *****
+2026-02-08 11:08:03 INFO  TC2_loginValidUser:23 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:08:07 INFO  TC2_loginValidUser:30 - ***** Login successfully *****
+2026-02-08 11:08:36 INFO  TC1_registerUser:12 - ***** Starting TC1_registerUser *****
+2026-02-08 11:08:38 INFO  TC1_registerUser:20 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:08:40 INFO  TC1_registerUser:27 - ***** Navigated to AccountInfoPage *****
+2026-02-08 11:08:45 INFO  TC1_registerUser:47 - ***** Navigated to AccountCreatedPage *****
+2026-02-08 11:08:49 INFO  TC1_registerUser:56 - ***** Navigated to AccountDeletedPage *****
+2026-02-08 11:08:56 INFO  TC2_loginValidUser:15 - ***** Starting TC2_loginValidUser *****
+2026-02-08 11:08:59 INFO  TC2_loginValidUser:23 - ***** Navigated to RegisterLoginPage *****
+2026-02-08 11:09:02 INFO  TC2_loginValidUser:30 - ***** Login successfully *****
+2026-02-08 12:13:25 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 12:13:25 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:27:44 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:27:45 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:38:36 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:38:37 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:43:27 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:43:27 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:44:09 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:44:09 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:45:01 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:45:01 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:48:49 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:48:50 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:49:58 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:49:59 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:53:34 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:53:34 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:54:24 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:54:24 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:56:04 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:56:04 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****
+2026-02-08 16:56:57 INFO  TC14_placeOrder_Register:103 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-08 16:56:57 INFO  TC14_placeOrder_Register:107 - ***** HomePage Visible *****

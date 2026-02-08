@@ -16,7 +16,10 @@
 <!--            <class name="testCases.TC8_verifyAllProductsAndProductDetails"/>-->
 <!--            <class name="testCases.TC9_searchProduct"/>-->
 <!--            <class name="testCases.TC10_verifyHomeSubscription"/>-->
-            <class name="testCases.TC11_verifyHomeSubscription"/>
+<!--            <class name="testCases.TC11_verifyHomeSubscription"/>-->
+<!--            <class name="testCases.TC12_addProduct"/>-->
+<!--            <class name="testCases.TC13_verifyProductQuantity"/>-->
+            <class name="testCases.TC14_placeOrder_Register"/>
 
         </classes>
     </test>

@@ -5,6 +5,8 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.components.FooterComponent;
+import pageObjects.components.NavComponent;
 
 import java.time.Duration;
 
@@ -12,10 +14,17 @@ public class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected JavascriptExecutor js;
+    // 实例化组件
+    public NavComponent nav;
+    public FooterComponent footer;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.js = (JavascriptExecutor) driver;
+        this.nav = new NavComponent(driver);
+        this.footer = new FooterComponent(driver);
         PageFactory.initElements(driver,this);
     }
 
@@ -23,14 +32,36 @@ public class BasePage {
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
-    protected void waitForElementClickable(WebElement element){
+    //overloading method - By
+    protected void waitForElementVisible(By locator){
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    protected void waitForElementClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
     }
 
-//    protected void clickElement(WebElement element){
-//        waitForElementClickable(element);
-//        element.click();
-//    }
+    // overloading method - By
+    protected void waitForElementClickable(By locator) {
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    protected void clickElement(WebElement element) {
+        waitForElementClickable(element);
+        element.click();
+    }
+
+    //overloading method - By
+    protected void clickElement(By locator) {
+        waitForElementClickable(locator);
+
+        try{
+            driver.findElement(locator).click();
+        } catch (Exception e) {
+            System.out.println("普通点击失败，尝试使用 JS 点击: " + locator.toString());
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(locator));
+        }
+    }
 
     protected void clickElementJS(WebElement element) {
         waitForElementVisible(element);
@@ -44,10 +75,27 @@ public class BasePage {
         element.sendKeys(text);
     }
 
+    //overloading method - By
+    protected void sendKeysToElement(By locator, String text){
+        waitForElementVisible(locator);
+        driver.findElement(locator).clear();
+        driver.findElement(locator).sendKeys(text);
+    }
+
     protected boolean isElementPresent(WebElement element){
         try{
             waitForElementVisible(element);
             return element.isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    //overloading method - By
+    protected boolean isElementPresent(By locator){
+        try{
+            waitForElementVisible(locator);
+            return driver.findElement(locator).isDisplayed();
         }catch (Exception e){
             return false;
         }
@@ -86,4 +134,29 @@ public class BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView()",element);
     }
+
+    public void addProductToCartByIndex(int index){
+        // 1. 动态生成定位器 (直接找按钮)
+        String btnXpath = String.format("(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]", index);
+        WebElement addToCartBtn = driver.findElement(By.xpath(btnXpath));
+
+        // 2. 滚动到商品位置（好习惯，确保元素加载）
+        String productXpath = String.format("(//div[@class='single-products'])[%d]", index);
+        WebElement product = driver.findElement(By.xpath(productXpath));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", product);
+
+        // 3. 直接执行 JS 点击
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", addToCartBtn);
+    }
+
+    public void clickContinueShopping(){
+        clickElementJS(driver.findElement(By.xpath("//button[normalize-space()='Continue Shopping']")));
+    }
+
+    public CartPage clickLinkViewCart(){
+        clickElementJS(driver.findElement(By.xpath("//u[normalize-space()='View Cart']")));
+        return new CartPage(driver);
+    }
+
 }
