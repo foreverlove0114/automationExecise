@@ -69,6 +69,13 @@ public class BasePage {
         js.executeScript("arguments[0].click();", element);
     }
 
+    //overloading method - By
+    protected void clickElementJS(By locator) {
+        waitForElementVisible(locator);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", driver.findElement(locator));
+    }
+
     protected void sendKeysToElement(WebElement element, String text){
         waitForElementVisible(element);
         element.clear();

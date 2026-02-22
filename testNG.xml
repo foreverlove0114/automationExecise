@@ -19,8 +19,11 @@
 <!--            <class name="testCases.TC11_verifyHomeSubscription"/>-->
 <!--            <class name="testCases.TC12_addProduct"/>-->
 <!--            <class name="testCases.TC13_verifyProductQuantity"/>-->
-            <class name="testCases.TC14_placeOrder_Register"/>
-
+<!--            <class name="testCases.TC14_placeOrder_Register"/>-->
+<!--            <class name="testCases.TC15_register_Checkout"/>-->
+<!--            <class name="testCases.TC16_login_Checkout"/>-->
+<!--            <class name="testCases.TC17_removeProducts"/>-->
+            <class name="testCases.TC18_viewCategoryProducts"/>
         </classes>
     </test>
 </suite>

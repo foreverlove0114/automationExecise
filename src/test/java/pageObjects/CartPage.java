@@ -34,6 +34,9 @@ public class CartPage extends BasePage{
     @FindBy(xpath = "//u[normalize-space()='Register / Login']")
     private WebElement linkJumpRegisterLogin;
 
+    @FindBy(xpath = "//b[normalize-space()='Cart is empty!']")
+    private WebElement cartIsEmptyAlert;
+
     // 动态定位器模板 (By 对象写法)
     private By getPriceXpath(int index) {
         return By.xpath("(//td[@class='cart_price']/p)[" + index + "]");
@@ -90,5 +93,14 @@ public class CartPage extends BasePage{
     public RegisterLoginPage jumpRegisterLogin(){
         clickElement(linkJumpRegisterLogin);
         return new RegisterLoginPage(driver);
+    }
+
+    public boolean isCartEmptyAlertPresent(){
+        return isElementPresent(cartIsEmptyAlert);
+    }
+
+    public void removeProductByID(int index){
+        String removeBtnXpath = String.format("//a[@data-product-id=%d]",index);
+        driver.findElement(By.xpath(removeBtnXpath)).click();
     }
 }

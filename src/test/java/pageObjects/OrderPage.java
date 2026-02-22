@@ -25,4 +25,6 @@ public class OrderPage extends BasePage{
         clickElement(btnPlaceOrder);
         return new PaymentPage(driver);
     }
+
+
 }

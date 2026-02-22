@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -54,6 +55,10 @@ public class HomePage extends BasePage{
 
     @FindBy(xpath = "//div[@class='choose']//a")
     private List<WebElement> allViewProductBtns;
+
+    private final By headingCategory = By.xpath("//h2[normalize-space()='Category']");
+    private final By categoryWomen = By.xpath("//a[normalize-space()='Women']");
+    private final By dressLink = By.xpath("//div[@id='Women']//a[contains(text(),'Dress')]");
 
     public boolean isHomePageVisible(){
         return isElementPresent(HomePageTitle);
@@ -126,5 +131,16 @@ public class HomePage extends BasePage{
         return new ProductDetailsPage(driver);
     }
 
+    public boolean isHeadingCategoryPresent(){
+        return isElementPresent(headingCategory);
+    }
 
+    public void clickCategoryWomen(){
+        clickElementJS(categoryWomen);
+    }
+
+    public CategoryProductPage clickDressLink(){
+        clickElementJS(dressLink);
+        return new CategoryProductPage(driver);
+    }
 }
