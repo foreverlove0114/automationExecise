@@ -5,6 +5,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pageObjects.components.FooterComponent;
+import pageObjects.components.NavComponent;
 
 import java.util.List;
 import java.util.Random;
@@ -12,6 +14,8 @@ import java.util.Random;
 public class HomePage extends BasePage{
     public HomePage(WebDriver driver) {
         super(driver);
+        this.nav = new NavComponent(driver);
+        this.footer = new FooterComponent(driver);
     }
 
     @FindBy(xpath = "//h2[contains(text(),\"Full-Fledged practice\")]")

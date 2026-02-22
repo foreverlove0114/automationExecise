@@ -20,5 +20,9 @@ public class TC18_viewCategoryProducts extends BaseClass {
         CategoryProductPage cpp = hp.clickDressLink();
         //6. Verify that category page is displayed and confirm text 'WOMEN - TOPS PRODUCTS'
         Assert.assertTrue(cpp.isHeadingWomenDressProductPresent());
+        //7. On left side bar, click on any sub-category link of 'Men' category
+        cpp.category.selectSubCategory("Men","Tshirts");
+        //8. Verify that user is navigated to that category page
+        Assert.assertTrue(cpp.isHeadingMenTshirtsProductPresent());
     }
 }

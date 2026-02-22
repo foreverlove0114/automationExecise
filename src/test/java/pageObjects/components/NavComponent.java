@@ -2,13 +2,14 @@ package pageObjects.components;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import pageObjects.*;
 
-public class NavComponent {
-    private WebDriver driver;
+public class NavComponent extends BasePage {
 
     public NavComponent(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
+//        PageFactory.initElements(driver, this);
     }
 
     // 定位器统一使用 By，方便动态处理
@@ -26,7 +27,8 @@ public class NavComponent {
     }
 
     public CartPage clickCart() {
-        driver.findElement(linkCart).click();
+        waitForElementClickable(linkCart);
+        clickElement(linkCart);
         return new CartPage(driver);
     }
 

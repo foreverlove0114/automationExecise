@@ -5,12 +5,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
 public class CartPage extends BasePage{
     public CartPage(WebDriver driver) {
         super(driver);
+//        PageFactory.initElements(driver, this);
     }
 
     @FindBy(xpath = "//h2[normalize-space()='Subscription']")
@@ -101,6 +103,7 @@ public class CartPage extends BasePage{
 
     public void removeProductByID(int index){
         String removeBtnXpath = String.format("//a[@data-product-id=%d]",index);
-        driver.findElement(By.xpath(removeBtnXpath)).click();
+//        driver.findElement(By.xpath(removeBtnXpath)).click();
+        clickElement(By.xpath(removeBtnXpath));
     }
 }

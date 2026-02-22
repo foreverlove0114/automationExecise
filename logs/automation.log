@@ -1,20 +1,40 @@
-2026-02-10 10:00:22 INFO  TC14_placeOrder_Register:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 10:00:22 INFO  TC14_placeOrder_Register:108 - ***** HomePage Visible *****
-2026-02-10 10:00:54 INFO  TC14_placeOrder_Register:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 10:00:54 INFO  TC14_placeOrder_Register:108 - ***** HomePage Visible *****
-2026-02-10 10:01:52 INFO  TC15_register_Checkout:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 10:01:53 INFO  TC15_register_Checkout:108 - ***** HomePage Visible *****
-2026-02-10 10:09:24 INFO  TC16_login_Checkout:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 10:09:24 INFO  TC16_login_Checkout:108 - ***** HomePage Visible *****
-2026-02-10 10:20:15 INFO  TC16_login_Checkout:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 10:20:15 INFO  TC16_login_Checkout:108 - ***** HomePage Visible *****
-2026-02-10 11:01:34 INFO  TC17_removeProducts:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 11:01:35 INFO  TC17_removeProducts:108 - ***** HomePage Visible *****
-2026-02-10 11:41:00 INFO  TC18_viewCategoryProducts:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 11:41:01 INFO  TC18_viewCategoryProducts:108 - ***** HomePage Visible *****
-2026-02-10 11:41:47 INFO  TC18_viewCategoryProducts:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 11:41:47 INFO  TC18_viewCategoryProducts:108 - ***** HomePage Visible *****
-2026-02-10 11:42:25 INFO  TC18_viewCategoryProducts:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 11:42:26 INFO  TC18_viewCategoryProducts:108 - ***** HomePage Visible *****
-2026-02-10 11:45:20 INFO  TC18_viewCategoryProducts:104 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
-2026-02-10 11:45:20 INFO  TC18_viewCategoryProducts:108 - ***** HomePage Visible *****
+2026-02-22 21:22:11 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:26:41 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:26:41 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:27:52 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:27:52 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:29:01 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:29:13 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:29:13 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:37:26 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:37:26 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:39:30 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:39:30 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:40:40 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:40:40 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:41:49 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:41:49 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:43:10 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:43:10 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:44:42 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:44:42 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:45:19 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:45:19 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:46:17 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:46:17 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:52:42 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:52:42 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:53:18 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:53:18 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:54:03 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:54:03 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:56:29 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:56:29 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 21:57:51 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 21:57:51 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-02-22 22:12:46 INFO  TC18_viewCategoryProducts:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 22:12:47 INFO  TC18_viewCategoryProducts:144 - ***** HomePage Visible *****
+2026-02-22 22:16:18 INFO  TC18_viewCategoryProducts:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 22:16:18 INFO  TC18_viewCategoryProducts:144 - ***** HomePage Visible *****
+2026-02-22 22:18:45 INFO  TC18_viewCategoryProducts:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-02-22 22:18:45 INFO  TC18_viewCategoryProducts:144 - ***** HomePage Visible *****

@@ -3,12 +3,12 @@ package pageObjects.components;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import pageObjects.BasePage;
 
-public class FooterComponent {
-    private WebDriver driver;
+public class FooterComponent extends BasePage {
 
     public FooterComponent(WebDriver driver) {
-        this.driver = driver;
+        super(driver); // 关键：把驱动交给父类处理
     }
 
     private By inputSubscribe = By.id("susbscribe_email");

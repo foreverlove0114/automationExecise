@@ -5,6 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.components.CategoryComponent;
 import pageObjects.components.FooterComponent;
 import pageObjects.components.NavComponent;
 
@@ -18,13 +19,14 @@ public class BasePage {
     // 实例化组件
     public NavComponent nav;
     public FooterComponent footer;
+    public CategoryComponent category;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         this.js = (JavascriptExecutor) driver;
-        this.nav = new NavComponent(driver);
-        this.footer = new FooterComponent(driver);
+//        this.nav = new NavComponent(driver);
+//        this.footer = new FooterComponent(driver);
         PageFactory.initElements(driver,this);
     }
 
@@ -53,11 +55,11 @@ public class BasePage {
 
     //overloading method - By
     protected void clickElement(By locator) {
-        waitForElementClickable(locator);
+//        waitForElementClickable(locator);
 
         try{
             driver.findElement(locator).click();
-        } catch (Exception e) {
+        } catch (ElementClickInterceptedException e) {
             System.out.println("普通点击失败，尝试使用 JS 点击: " + locator.toString());
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(locator));
         }

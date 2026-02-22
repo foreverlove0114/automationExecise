@@ -1,5 +1,6 @@
 package testCases;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.CartPage;
 import pageObjects.OrderPage;
@@ -19,6 +20,7 @@ public class TC17_removeProducts extends BaseClass {
         cp.removeProductByID(1);
         Thread.sleep(500);
         cp.removeProductByID(2);
-        cp.isCartEmptyAlertPresent();
+        //8. Verify that product is removed from the cart
+        Assert.assertTrue(cp.isCartEmptyAlertPresent());
     }
 }
