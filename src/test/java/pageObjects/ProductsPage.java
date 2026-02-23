@@ -7,6 +7,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.components.CategoryBrandsComponent;
+import pageObjects.components.NavComponent;
 
 import java.time.Duration;
 import java.util.List;
@@ -14,6 +16,8 @@ import java.util.List;
 public class ProductsPage extends BasePage{
     public ProductsPage(WebDriver driver) {
         super(driver);
+        this.nav = new NavComponent(driver);
+        this.category = new CategoryBrandsComponent(driver);
     }
 
     @FindBy(xpath = "//h2[normalize-space()='All Products']")
@@ -51,8 +55,6 @@ public class ProductsPage extends BasePage{
 
     @FindBy(xpath = "//a[text()=' Cart']")
     private WebElement cartLink;
-
-
 
 
     public boolean checkHeadingProductPagePresent(){
@@ -106,6 +108,4 @@ public class ProductsPage extends BasePage{
         clickElementJS(cartLink);
         return new CartPage(driver);
     }
-
-
 }

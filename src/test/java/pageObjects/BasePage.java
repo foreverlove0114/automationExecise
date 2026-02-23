@@ -5,7 +5,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import pageObjects.components.CategoryComponent;
+import pageObjects.components.CategoryBrandsComponent;
 import pageObjects.components.FooterComponent;
 import pageObjects.components.NavComponent;
 
@@ -19,7 +19,7 @@ public class BasePage {
     // 实例化组件
     public NavComponent nav;
     public FooterComponent footer;
-    public CategoryComponent category;
+    public CategoryBrandsComponent category;
 
     public BasePage(WebDriver driver) {
         this.driver = driver;

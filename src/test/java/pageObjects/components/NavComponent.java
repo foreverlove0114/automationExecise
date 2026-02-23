@@ -33,7 +33,8 @@ public class NavComponent extends BasePage {
     }
 
     public ProductsPage clickProducts() {
-        driver.findElement(linkProducts).click();
+//        driver.findElement(linkProducts).click();
+        clickElementJS(linkProducts);
         return new ProductsPage(driver);
     }
 
@@ -47,4 +48,5 @@ public class NavComponent extends BasePage {
         driver.findElement(linkDeleteAccount).click();
         return new AccountDeletedPage(driver);
     }
+
 }

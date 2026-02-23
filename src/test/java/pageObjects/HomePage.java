@@ -1,10 +1,10 @@
 package pageObjects;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import pageObjects.components.CategoryBrandsComponent;
 import pageObjects.components.FooterComponent;
 import pageObjects.components.NavComponent;
 
@@ -16,6 +16,7 @@ public class HomePage extends BasePage{
         super(driver);
         this.nav = new NavComponent(driver);
         this.footer = new FooterComponent(driver);
+        this.category = new CategoryBrandsComponent(driver);
     }
 
     @FindBy(xpath = "//h2[contains(text(),\"Full-Fledged practice\")]")

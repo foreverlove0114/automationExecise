@@ -2,12 +2,12 @@ package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import pageObjects.components.CategoryComponent;
+import pageObjects.components.CategoryBrandsComponent;
 
 public class CategoryProductPage extends BasePage{
     public CategoryProductPage(WebDriver driver) {
         super(driver);
-        this.category = new CategoryComponent(driver);
+        this.category = new CategoryBrandsComponent(driver);
     }
 
     private final By headingWomenDressProduct = By.xpath("//h2[normalize-space()='Women - Dress Products']");

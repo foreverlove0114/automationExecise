@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import pageObjects.components.NavComponent;
 
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class CartPage extends BasePage{
     public CartPage(WebDriver driver) {
         super(driver);
 //        PageFactory.initElements(driver, this);
+        this.nav = new NavComponent(driver);
     }
 
     @FindBy(xpath = "//h2[normalize-space()='Subscription']")
