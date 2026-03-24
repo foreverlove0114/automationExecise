@@ -1,54 +1,37 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class ContactUsPage extends BasePage{
     public ContactUsPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "//h2[normalize-space()='Get In Touch']")
-    private WebElement textGetInTouch;
-
-    @FindBy(xpath = "//input[@placeholder='Name']")
-    private WebElement nameInput;
-
-    @FindBy(xpath = "//input[@placeholder='Email']")
-    private WebElement emailInput;
-
-    @FindBy(xpath = "//input[@placeholder='Subject']")
-    private WebElement subjectInput;
-
-    @FindBy(xpath = "//textarea[@id='message']")
-    private WebElement messageInput;
-
-    @FindBy(xpath = "//input[@name='upload_file']")
-    private WebElement fileUpload;
-
-    @FindBy(xpath = "//input[@name='submit']")
-    private WebElement buttonSubmit;
-
-    @FindBy(xpath = "//div[@class='status alert alert-success']")
-    private WebElement alertFormSubmitted;
-
-    @FindBy(xpath = "//span[normalize-space()='Home']")
-    private WebElement buttonBackToHome;
+    // 统一使用 By 定位器
+    private final By textGetInTouch = By.xpath("//h2[normalize-space()='Get In Touch']");
+    private final By nameInput = By.xpath("//input[@placeholder='Name']");
+    private final By emailInput = By.xpath("//input[@placeholder='Email']");
+    private final By subjectInput = By.xpath("//input[@placeholder='Subject']");
+    private final By messageInput = By.xpath("//textarea[@id='message']");
+    private final By fileUpload = By.xpath("//input[@name='upload_file']");
+    private final By buttonSubmit = By.xpath("//input[@name='submit']");
+    private final By alertFormSubmitted = By.xpath("//div[@class='status alert alert-success']");
+    private final By buttonBackToHome = By.xpath("//span[normalize-space()='Home']");
 
     public boolean checkWhetherGetInTouchPresent(){
         return isElementPresent(textGetInTouch);
     }
 
-    public void fillInfoAndMsg(String name,String email,String subject,String message){
-        sendKeysToElement(nameInput,name);
-        sendKeysToElement(emailInput,email);
-        sendKeysToElement(subjectInput,subject);
-        sendKeysToElement(messageInput,message);
+    public void fillInfoAndMsg(String name, String email, String subject, String message){
+        sendKeysToElement(nameInput, name);
+        sendKeysToElement(emailInput, email);
+        sendKeysToElement(subjectInput, subject);
+        sendKeysToElement(messageInput, message);
     }
 
     public void uploadFileAndSubmit(String file){
-        sendKeysToElement(fileUpload,file);
+        sendKeysToElement(fileUpload, file);
         clickElementJS(buttonSubmit);
     }
 

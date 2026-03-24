@@ -1,11 +1,8 @@
 package pageObjects;
 
-import org.apache.logging.log4j.core.config.Order;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import pageObjects.components.NavComponent;
 
 import java.util.List;
@@ -13,33 +10,18 @@ import java.util.List;
 public class CartPage extends BasePage{
     public CartPage(WebDriver driver) {
         super(driver);
-//        PageFactory.initElements(driver, this);
         this.nav = new NavComponent(driver);
     }
 
-    @FindBy(xpath = "//h2[normalize-space()='Subscription']")
-    private WebElement textSubscription;
-
-    @FindBy(xpath = "//input[@id='susbscribe_email']")
-    private WebElement emailSubscriptionInput;
-
-    @FindBy(xpath = "//button[@id='subscribe']")
-    private WebElement clickSubscription;
-
-    @FindBy(xpath = "//div[@class='alert-success alert']")
-    private WebElement alertSubscribeSuccess;
-
-    @FindBy(xpath = "//table[@id='cart_info_table']//tr[not(parent::thead)]")
-    private List<WebElement> productInCart;
-
-    @FindBy(xpath = "//a[normalize-space()='Proceed To Checkout']")
-    private WebElement btnCheckout;
-
-    @FindBy(xpath = "//u[normalize-space()='Register / Login']")
-    private WebElement linkJumpRegisterLogin;
-
-    @FindBy(xpath = "//b[normalize-space()='Cart is empty!']")
-    private WebElement cartIsEmptyAlert;
+    // 统一使用 By 定位器
+    private final By textSubscription = By.xpath("//h2[normalize-space()='Subscription']");
+    private final By emailSubscriptionInput = By.xpath("//input[@id='susbscribe_email']");
+    private final By clickSubscription = By.xpath("//button[@id='subscribe']");
+    private final By alertSubscribeSuccess = By.xpath("//div[@class='alert-success alert']");
+    private final By productInCart = By.xpath("//table[@id='cart_info_table']//tr[not(parent::thead)]");
+    private final By btnCheckout = By.xpath("//a[normalize-space()='Proceed To Checkout']");
+    private final By linkJumpRegisterLogin = By.xpath("//u[normalize-space()='Register / Login']");
+    private final By cartIsEmptyAlert = By.xpath("//b[normalize-space()='Cart is empty!']");
 
     // 动态定位器模板 (By 对象写法)
     private By getPriceXpath(int index) {
@@ -73,7 +55,7 @@ public class CartPage extends BasePage{
     }
 
     public void subscribe(String text){
-        sendKeysToElement(emailSubscriptionInput,text);
+        sendKeysToElement(emailSubscriptionInput, text);
         clickElementJS(clickSubscription);
     }
 

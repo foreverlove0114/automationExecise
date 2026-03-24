@@ -3,7 +3,6 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 import pageObjects.components.CategoryBrandsComponent;
 import pageObjects.components.FooterComponent;
 import pageObjects.components.NavComponent;
@@ -19,48 +18,21 @@ public class HomePage extends BasePage{
         this.category = new CategoryBrandsComponent(driver);
     }
 
-    @FindBy(xpath = "//h2[contains(text(),\"Full-Fledged practice\")]")
-    private WebElement HomePageTitle;
-
-    @FindBy(xpath = " //a[normalize-space()='Signup / Login']")
-    private WebElement Signup_Login_Link;
-
-    @FindBy(partialLinkText = "Logged in")
-    private WebElement linkCheckLogin;
-
-    @FindBy(xpath = "//a[normalize-space()='Delete Account']")
-    private WebElement linkDeleteAccount;
-
-    @FindBy(xpath = "//a[normalize-space()='Logout']")
-    private WebElement linkLogout;
-
-    @FindBy(xpath = "//a[normalize-space()='Contact us']")
-    private WebElement linkContactUs;
-
-    @FindBy(xpath = "//div[@class='item active']//button[@type='button'][normalize-space()='Test Cases']")
-    private WebElement buttonTestCases;
-
-    @FindBy(xpath = "//a[@href='/products']")
-    private WebElement linkProducts;
-
-    @FindBy(xpath = "//h2[normalize-space()='Subscription']")
-    private WebElement textSubscription;
-
-    @FindBy(xpath = "//input[@id='susbscribe_email']")
-    private WebElement emailSubscriptionInput;
-
-    @FindBy(xpath = "//button[@id='subscribe']")
-    private WebElement clickSubscription;
-
-    @FindBy(xpath = "//div[@class='alert-success alert']")
-    private WebElement alertSubscribeSuccess;
-
-    @FindBy(xpath = "//a[normalize-space()='Cart']")
-    private WebElement linkCart;
-
-    @FindBy(xpath = "//div[@class='choose']//a")
-    private List<WebElement> allViewProductBtns;
-
+    // 统一使用 By 定位器
+    private final By HomePageTitle = By.xpath("//h2[contains(text(),'Full-Fledged practice')]");
+    private final By Signup_Login_Link = By.xpath("//a[normalize-space()='Signup / Login']");
+    private final By linkCheckLogin = By.partialLinkText("Logged in");
+    private final By linkDeleteAccount = By.xpath("//a[normalize-space()='Delete Account']");
+    private final By linkLogout = By.xpath("//a[normalize-space()='Logout']");
+    private final By linkContactUs = By.xpath("//a[normalize-space()='Contact us']");
+    private final By buttonTestCases = By.xpath("//div[@class='item active']//button[@type='button'][normalize-space()='Test Cases']");
+    private final By linkProducts = By.xpath("//a[@href='/products']");
+    private final By textSubscription = By.xpath("//h2[normalize-space()='Subscription']");
+    private final By emailSubscriptionInput = By.xpath("//input[@id='susbscribe_email']");
+    private final By clickSubscription = By.xpath("//button[@id='subscribe']");
+    private final By alertSubscribeSuccess = By.xpath("//div[@class='alert-success alert']");
+    private final By linkCart = By.xpath("//a[normalize-space()='Cart']");
+    private final By allViewProductBtns = By.xpath("//div[@class='choose']//a");
     private final By headingCategory = By.xpath("//h2[normalize-space()='Category']");
     private final By categoryWomen = By.xpath("//a[normalize-space()='Women']");
     private final By dressLink = By.xpath("//div[@id='Women']//a[contains(text(),'Dress')]");
@@ -126,13 +98,11 @@ public class HomePage extends BasePage{
     }
 
     public ProductDetailsPage clickRandomViewProduct(){
+        List<WebElement> viewBtns = driver.findElements(allViewProductBtns);
         Random random = new Random();
-        // 2. 使用 Random 类生成随机索引
-        int randomIndex = random.nextInt(allViewProductBtns.size());
-        // 3. 获取随机出的那个按钮
-        WebElement randomBtn = allViewProductBtns.get(randomIndex);
+        int randomIndex = random.nextInt(viewBtns.size());
+        WebElement randomBtn = viewBtns.get(randomIndex);
         clickElementJS(randomBtn);
-
         return new ProductDetailsPage(driver);
     }
 

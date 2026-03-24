@@ -1,81 +1,44 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class AccountInfoPage extends BasePage{
     public AccountInfoPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "//b[normalize-space()='Enter Account Information']")
-    private WebElement accountInfoTitle;
-
-    @FindBy(xpath = "//input[@id='id_gender1']")
-    private WebElement genderRadio;
-
-    @FindBy(xpath = "//input[@id='password']")
-    private WebElement passwordInput;
-
-    @FindBy(xpath = "//select[@id='days']")
-    private WebElement daySelect;
-
-    @FindBy(xpath = "//select[@id='months']")
-    private WebElement monthSelect;
-
-    @FindBy(xpath = "//select[@id='years']")
-    private WebElement yearSelect;
-
-    @FindBy(xpath = "//input[@id='newsletter']")
-    private WebElement checkboxNewsletter;
-
-    @FindBy(xpath = "//input[@id='optin']")
-    private WebElement checkboxOffer;
-
-    @FindBy(xpath = "//input[@id='first_name']")
-    private WebElement firstNameInput;
-
-    @FindBy(xpath = "//input[@id='last_name']")
-    private WebElement lastNameInput;
-
-    @FindBy(xpath = "//input[@id='company']")
-    private WebElement companyInput;
-
-    @FindBy(xpath = "//input[@id='address1']")
-    private WebElement address1Input;
-
-    @FindBy(xpath = "//input[@id='address2']")
-    private WebElement address2Input;
-
-    @FindBy(xpath = "//select[@id='country']")
-    private WebElement countrySelect;
-
-    @FindBy(xpath = "//input[@id='state']")
-    private WebElement stateInput;
-
-    @FindBy(xpath = "//input[@id='city']")
-    private WebElement cityInput;
-
-    @FindBy(xpath = "//input[@id='zipcode']")
-    private WebElement zipcodeInput;
-
-    @FindBy(xpath = "//input[@id='mobile_number']")
-    private WebElement mobileInput;
-
-    @FindBy(xpath = "//button[normalize-space()='Create Account']")
-    private WebElement buttonCreateAccount;
+    // 统一使用 By 定位器
+    private final By accountInfoTitle = By.xpath("//b[normalize-space()='Enter Account Information']");
+    private final By genderRadio = By.xpath("//input[@id='id_gender1']");
+    private final By passwordInput = By.xpath("//input[@id='password']");
+    private final By daySelect = By.xpath("//select[@id='days']");
+    private final By monthSelect = By.xpath("//select[@id='months']");
+    private final By yearSelect = By.xpath("//select[@id='years']");
+    private final By checkboxNewsletter = By.xpath("//input[@id='newsletter']");
+    private final By checkboxOffer = By.xpath("//input[@id='optin']");
+    private final By firstNameInput = By.xpath("//input[@id='first_name']");
+    private final By lastNameInput = By.xpath("//input[@id='last_name']");
+    private final By companyInput = By.xpath("//input[@id='company']");
+    private final By address1Input = By.xpath("//input[@id='address1']");
+    private final By address2Input = By.xpath("//input[@id='address2']");
+    private final By countrySelect = By.xpath("//select[@id='country']");
+    private final By stateInput = By.xpath("//input[@id='state']");
+    private final By cityInput = By.xpath("//input[@id='city']");
+    private final By zipcodeInput = By.xpath("//input[@id='zipcode']");
+    private final By mobileInput = By.xpath("//input[@id='mobile_number']");
+    private final By buttonCreateAccount = By.xpath("//button[normalize-space()='Create Account']");
 
     public boolean isEnterAccountInfoTitleVisible(){
         return isElementPresent(accountInfoTitle);
     }
 
-    public void fillInAccountInfo(String password,String day,String month,String year){
+    public void fillInAccountInfo(String password, String day, String month, String year){
         clickElementJS(genderRadio);
-        sendKeysToElement(passwordInput,password);
-        selectByVisibleText(daySelect,day);
-        selectByVisibleText(monthSelect,month);
-        selectByVisibleText(yearSelect,year);
+        sendKeysToElement(passwordInput, password);
+        selectByVisibleText(daySelect, day);
+        selectByVisibleText(monthSelect, month);
+        selectByVisibleText(yearSelect, year);
         clickElementJS(checkboxNewsletter);
         clickElementJS(checkboxOffer);
     }
@@ -91,16 +54,16 @@ public class AccountInfoPage extends BasePage{
             String city,
             String zipcode,
             String mobile){
-        sendKeysToElement(firstNameInput,firstname);
-        sendKeysToElement(lastNameInput,lastname);
-        sendKeysToElement(companyInput,company);
-        sendKeysToElement(address1Input,address1);
-        sendKeysToElement(address2Input,address2);
-        selectByVisibleText(countrySelect,country);
-        sendKeysToElement(stateInput,state);
-        sendKeysToElement(cityInput,city);
-        sendKeysToElement(zipcodeInput,zipcode);
-        sendKeysToElement(mobileInput,mobile);
+        sendKeysToElement(firstNameInput, firstname);
+        sendKeysToElement(lastNameInput, lastname);
+        sendKeysToElement(companyInput, company);
+        sendKeysToElement(address1Input, address1);
+        sendKeysToElement(address2Input, address2);
+        selectByVisibleText(countrySelect, country);
+        sendKeysToElement(stateInput, state);
+        sendKeysToElement(cityInput, city);
+        sendKeysToElement(zipcodeInput, zipcode);
+        sendKeysToElement(mobileInput, mobile);
     }
 
     public AccountCreatedPage clickCreateAccountButton(){

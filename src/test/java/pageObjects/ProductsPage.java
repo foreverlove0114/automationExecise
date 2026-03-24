@@ -4,7 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageObjects.components.CategoryBrandsComponent;
@@ -20,41 +19,25 @@ public class ProductsPage extends BasePage{
         this.category = new CategoryBrandsComponent(driver);
     }
 
-    @FindBy(xpath = "//h2[normalize-space()='All Products']")
-    private WebElement headingProductPage;
+    // 统一使用 By 定位器，支持动态 xpath
+    private final By headingProductPage = By.xpath("//h2[normalize-space()='All Products']");
+    private final By allProducts = By.xpath("//div[@class='features_items']//div[@class='col-sm-4']");
+    private final By allViewProduct = By.xpath("//i[contains(@class,'fa-plus-square')]/parent::a");
+    private final By searchInput = By.xpath("//input[@id='search_product']");
+    private final By searchButton = By.xpath("//button[@id='submit_search']");
+    private final By searchProducts = By.xpath("//h2[normalize-space()='Searched Products']");
+    private final By productName = By.xpath("//div[@class='productinfo text-center']//p[contains(text(),'Blue Top')]");
+    private final By buttonContinueShopping = By.xpath("//button[normalize-space()='Continue Shopping']");
+    private final By cartLink = By.xpath("//a[text()=' Cart']");
 
-    @FindBy(xpath = "//div[@class='features_items']//div[@class='col-sm-4']")
-    private List<WebElement> allProducts;
+    // 动态 xpath 模板方法
+    private By getProductWrapperBy(int index) {
+        return By.xpath(String.format("//div[@class='features_items']//div[@class='col-sm-4'][%d]", index));
+    }
 
-    @FindBy(xpath = "//i[contains(@class,'fa-plus-square')]/parent::a")
-    private List<WebElement> allViewProduct;
-
-    @FindBy(xpath = "//input[@id='search_product']")
-    private WebElement searchInput;
-
-    @FindBy(xpath = "//button[@id='submit_search']")
-    private WebElement searchButton;
-
-    @FindBy(xpath = "//h2[normalize-space()='Searched Products']")
-    private WebElement searchProducts;
-
-    @FindBy(xpath = "//div[@class='productinfo text-center']//p[contains(text(),'Blue Top')]")
-    private WebElement productName;
-
-//    @FindBy(xpath = "(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]")
-//    private WebElement addFirstItemIntoCartButton;
-
-    @FindBy(xpath = "//button[normalize-space()='Continue Shopping']")
-    private WebElement buttonContinueShopping;
-
-//    @FindBy(xpath = "//div[@class='features_items']//div[@class='col-sm-4'][%d]")
-//    private WebElement productWrapper;
-
-    private final String productWrapperXpath = "//div[@class='features_items']//div[@class='col-sm-4'][%d]";
-    private final String addToCartBtnXpath = "(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]";
-
-    @FindBy(xpath = "//a[text()=' Cart']")
-    private WebElement cartLink;
+    private By getAddToCartBtnBy(int index) {
+        return By.xpath(String.format("(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]", index));
+    }
 
 
     public boolean checkHeadingProductPagePresent(){
@@ -66,14 +49,16 @@ public class ProductsPage extends BasePage{
             return false;
         }
 
-        return (!allProducts.isEmpty() && allProducts.get(0).isDisplayed());
+        List<WebElement> products = driver.findElements(allProducts);
+        return (!products.isEmpty() && products.get(0).isDisplayed());
     }
 
     public ProductDetailsPage clickFirstItemToViewDetails(){
+        List<WebElement> viewProducts = driver.findElements(allViewProduct);
         // 检查列表是否为空
-        if (!allViewProduct.isEmpty()) {
+        if (!viewProducts.isEmpty()) {
             // 点击第一个
-            clickElementJS(allViewProduct.get(0));
+            clickElementJS(viewProducts.get(0));
         } else {
             throw new RuntimeException("未能找到任何 'View Product' 链接");
         }
@@ -82,7 +67,7 @@ public class ProductsPage extends BasePage{
     }
 
     public void searchItem(String text){
-        sendKeysToElement(searchInput,text);
+        sendKeysToElement(searchInput, text);
         clickElementJS(searchButton);
     }
 
@@ -91,13 +76,12 @@ public class ProductsPage extends BasePage{
     }
 
     public String getProductName(){
-        return productName.getText();
+        return driver.findElement(productName).getText();
     }
 
     public boolean isButtonContinueShoppingExist(){
         try {
-            WebElement btn = wait.until(ExpectedConditions.visibilityOf(buttonContinueShopping));
-            assert btn != null;
+            WebElement btn = wait.until(ExpectedConditions.visibilityOfElementLocated(buttonContinueShopping));
             return btn.isDisplayed();
         } catch (Exception e) {
             return false;

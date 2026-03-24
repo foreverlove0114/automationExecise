@@ -1,19 +1,16 @@
 package pageObjects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
 
 public class AccountCreatedPage extends BasePage{
     public AccountCreatedPage(WebDriver driver) {
         super(driver);
     }
 
-    @FindBy(xpath = "//b[normalize-space()='Account Created!']")
-    private WebElement accountCreatedTitle;
-
-    @FindBy(xpath = "//a[normalize-space()='Continue']")
-    private WebElement buttonContinue;
+    // 统一使用 By 定位器
+    private final By accountCreatedTitle = By.xpath("//b[normalize-space()='Account Created!']");
+    private final By buttonContinue = By.xpath("//a[normalize-space()='Continue']");
 
     public boolean isAccountCreatedTitleVisible(){
         return isElementPresent(accountCreatedTitle);
