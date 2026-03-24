@@ -49,3 +49,13 @@
 2026-03-25 00:06:25 INFO  TC21_addReviewOnProduct:23 - ***** Navigated to All Products Page *****
 2026-03-25 00:06:26 INFO  TC21_addReviewOnProduct:28 - ***** Write Your Review section is visible *****
 2026-03-25 00:06:26 INFO  TC21_addReviewOnProduct:35 - ***** Review submitted successfully *****
+2026-03-25 00:14:28 INFO  TC12_addProduct:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-03-25 00:14:28 INFO  TC12_addProduct:144 - ***** HomePage Visible *****
+2026-03-25 00:14:35 INFO  TC14_placeOrder_Register:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-03-25 00:14:35 INFO  TC14_placeOrder_Register:144 - ***** HomePage Visible *****
+2026-03-25 00:15:14 INFO  TC15_register_Checkout:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-03-25 00:15:14 INFO  TC15_register_Checkout:144 - ***** HomePage Visible *****
+2026-03-25 00:15:47 INFO  TC16_login_Checkout:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-03-25 00:15:47 INFO  TC16_login_Checkout:144 - ***** HomePage Visible *****
+2026-03-25 00:16:04 INFO  TC17_removeProducts:140 - ***** testCases.Authentication.TC8_verifyAllProductsAndProductDetails *****
+2026-03-25 00:16:04 INFO  TC17_removeProducts:144 - ***** HomePage Visible *****

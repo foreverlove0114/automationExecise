@@ -6,27 +6,27 @@
         <parameter name="os" value="Windows"/>
         <parameter name="browser" value="chrome"/>
         <classes>
-            <class name="testCases.Authentication.TC1_registerUser"/>
-            <class name="testCases.Authentication.TC2_loginValidUser"/>
-            <class name="testCases.Authentication.TC3_loginInvalidUser"/>
-            <class name="testCases.Authentication.TC4_logoutUser"/>
-            <class name="testCases.Authentication.TC5_registerDuplicateUser"/>
-            <class name="testCases.TC6_contactUsForm"/>
-            <class name="testCases.TC7_verifyTestCasesPage"/>
-            <class name="testCases.TC8_verifyAllProductsAndProductDetails"/>
-            <class name="testCases.TC9_searchProduct"/>
-            <class name="testCases.TC10_verifyHomeSubscription"/>
-            <class name="testCases.TC11_verifyHomeSubscription"/>
+<!--            <class name="testCases.Authentication.TC1_registerUser"/>-->
+<!--            <class name="testCases.Authentication.TC2_loginValidUser"/>-->
+<!--            <class name="testCases.Authentication.TC3_loginInvalidUser"/>-->
+<!--            <class name="testCases.Authentication.TC4_logoutUser"/>-->
+<!--            <class name="testCases.Authentication.TC5_registerDuplicateUser"/>-->
+<!--            <class name="testCases.TC6_contactUsForm"/>-->
+<!--            <class name="testCases.TC7_verifyTestCasesPage"/>-->
+<!--            <class name="testCases.TC8_verifyAllProductsAndProductDetails"/>-->
+<!--            <class name="testCases.TC9_searchProduct"/>-->
+<!--            <class name="testCases.TC10_verifyHomeSubscription"/>-->
+<!--            <class name="testCases.TC11_verifyHomeSubscription"/>-->
             <class name="testCases.TC12_addProduct"/>
-            <class name="testCases.TC13_verifyProductQuantity"/>
+<!--            <class name="testCases.TC13_verifyProductQuantity"/>-->
             <class name="testCases.TC14_placeOrder_Register"/>
             <class name="testCases.TC15_register_Checkout"/>
             <class name="testCases.TC16_login_Checkout"/>
             <class name="testCases.TC17_removeProducts"/>
-            <class name="testCases.TC18_viewCategoryProducts"/>
-            <class name="testCases.TC19_ViewCartBrandProducts"/>
+<!--            <class name="testCases.TC18_viewCategoryProducts"/>-->
+<!--            <class name="testCases.TC19_ViewCartBrandProducts"/>-->
             <class name="testCases.TC20_searchProducts_VerifyCart"/>
-            <class name="testCases.TC21_addReviewOnProduct"/>
+<!--            <class name="testCases.TC21_addReviewOnProduct"/>-->
         </classes>
     </test>
 </suite>

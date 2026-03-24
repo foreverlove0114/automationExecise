@@ -93,11 +93,26 @@ public class BasePage {
     }
 
     public void addProductToCartByIndex(int index){
-        By addToCartBtn = By.xpath(String.format("(//div[@class='product-overlay']//a[text()='Add to cart'])[%d]", index));
-        By product = By.xpath(String.format("(//div[@class='single-products'])[%d]", index));
+        // 使用多种策略定位 Add to cart 按钮
+        // 策略1: 通过 productinfo 区域中的 add-to-cart 按钮
+        By addToCartBtn = By.xpath(String.format("(//div[@class='productinfo text-center']//a[contains(@class,'add-to-cart')])[%d]", index));
+        // 策略2: 通过 data-product-id 属性
+        By altAddToCartBtn = By.xpath(String.format("(//a[@data-product-id])[%d]", index));
+        // 产品容器用于滚动
+        By product = By.xpath(String.format("(//div[@class='productinfo text-center'])[%d]", index));
 
+        // 先滚动到产品位置
         scrollDownUntilText(product);
-        clickElementJS(addToCartBtn);
+
+        // 尝试点击，如果失败则使用备用策略
+        try {
+            waitForElementVisible(addToCartBtn);
+            clickElementJS(addToCartBtn);
+        } catch (Exception e) {
+            System.out.println("主 xpath 失败，尝试备用 xpath...");
+            waitForElementVisible(altAddToCartBtn);
+            clickElementJS(altAddToCartBtn);
+        }
     }
 
     public void clickContinueShopping(){
