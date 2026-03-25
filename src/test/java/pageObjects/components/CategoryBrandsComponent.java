@@ -1,11 +1,15 @@
 package pageObjects.components;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import pageObjects.BasePage;
 import pageObjects.BrandPage;
 
 public class CategoryBrandsComponent extends BasePage {
+    
+    private static final Logger logger = LogManager.getLogger(CategoryBrandsComponent.class);
 
     public CategoryBrandsComponent(WebDriver driver) {
         super(driver);
@@ -22,17 +26,39 @@ public class CategoryBrandsComponent extends BasePage {
 
     // 封装通用行为
     public void selectSubCategory(String mainCategory, String subCategory) {
-        // 例如：点击 Women -> 点击 Dress
-        By mainCat = By.xpath("//a[@href='#" + mainCategory + "']");
-        clickElementJS(mainCat);
-
-        By subCat = By.xpath("//div[@id='" + mainCategory + "']//a[contains(text(),'" + subCategory + "')]");
-        clickElementJS(subCat);
+        try {
+            // 等待元素可见
+            waitForElementVisible(By.xpath("//a[@href='#" + mainCategory + "']"));
+            
+            // 点击主分类前先滚动到该位置
+            By mainCat = By.xpath("//a[@href='#" + mainCategory + "']");
+            scrollDownUntilText(mainCat);
+            
+            // 使用 JS 点击确保能点到（侧边栏可能被固定）
+            clickElement(mainCat);
+            
+            try {
+                Thread.sleep(500); // 等待子菜单展开
+            } catch (InterruptedException ie) {
+                Thread.currentThread().interrupt();
+                logger.warn("Thread interrupted while waiting for submenu", ie);
+            }
+            
+            // 点击子分类
+            By subCat = By.xpath("//div[@id='" + mainCategory + "']//a[contains(text(),'" + subCategory + "')]");
+            waitForElementVisible(subCat);
+            clickElement(subCat);
+        } catch (Exception e) {
+            System.err.println("Failed to select category: " + mainCategory + " -> " + subCategory);
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     public BrandPage selectBrand(String brand){
+        // Brand 链接在侧边栏，优先使用普通点击
         By brandChosen = By.xpath("//a[@href='/brand_products/" + brand + "']");
-        clickElementJS(brandChosen);
+        clickElement(brandChosen);
         return new BrandPage(driver);
     }
 

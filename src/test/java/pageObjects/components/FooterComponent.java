@@ -17,7 +17,8 @@ public class FooterComponent extends BasePage {
 
     public void subscribe(String email) {
         driver.findElement(inputSubscribe).sendKeys(email);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", driver.findElement(btnSubscribe));
+        // Footer 中的订阅按钮可能被固定在页面底部，使用 JS 点击更可靠
+        clickElement(btnSubscribe);
     }
 
     public boolean isSuccessMsgVisible() {

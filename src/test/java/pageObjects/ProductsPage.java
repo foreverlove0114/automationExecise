@@ -48,17 +48,22 @@ public class ProductsPage extends BasePage{
         if(!isElementPresent(headingProductPage)){
             return false;
         }
-
-        List<WebElement> products = driver.findElements(allProducts);
-        return (!products.isEmpty() && products.get(0).isDisplayed());
+        // 使用显式等待确保产品存在
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+            WebElement firstProduct = wait.until(ExpectedConditions.visibilityOfElementLocated(allProducts));
+            return firstProduct.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public ProductDetailsPage clickFirstItemToViewDetails(){
         List<WebElement> viewProducts = driver.findElements(allViewProduct);
         // 检查列表是否为空
         if (!viewProducts.isEmpty()) {
-            // 点击第一个
-            clickElementJS(viewProducts.get(0));
+            // 点击第一个 - 使用普通点击，View Product 按钮通常不会被遮挡
+            viewProducts.get(0).click();
         } else {
             throw new RuntimeException("未能找到任何 'View Product' 链接");
         }
@@ -68,7 +73,7 @@ public class ProductsPage extends BasePage{
 
     public void searchItem(String text){
         sendKeysToElement(searchInput, text);
-        clickElementJS(searchButton);
+        clickElement(searchButton);
     }
 
     public boolean isSearchProductHeadingPresent(){
@@ -89,7 +94,7 @@ public class ProductsPage extends BasePage{
     }
 
     public CartPage navigateToCart(){
-        clickElementJS(cartLink);
+        clickElement(cartLink);
         return new CartPage(driver);
     }
 }

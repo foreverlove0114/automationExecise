@@ -3,6 +3,7 @@ package pageObjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import pageObjects.components.NavComponent;
 
 import java.util.List;
@@ -56,7 +57,7 @@ public class CartPage extends BasePage{
 
     public void subscribe(String text){
         sendKeysToElement(emailSubscriptionInput, text);
-        clickElementJS(clickSubscription);
+        clickElement(clickSubscription);
     }
 
     public boolean checkSubscription(){
@@ -72,7 +73,7 @@ public class CartPage extends BasePage{
     }
 
     public OrderPage proceedToCheckout(){
-        clickElementJS(btnCheckout);
+        clickElement(btnCheckout);
         return new OrderPage(driver);
     }
 
@@ -86,8 +87,22 @@ public class CartPage extends BasePage{
     }
 
     public void removeProductByID(int index){
-        String removeBtnXpath = String.format("//a[@data-product-id=%d]",index);
-//        driver.findElement(By.xpath(removeBtnXpath)).click();
-        clickElement(By.xpath(removeBtnXpath));
+        // 使用更精确的 xpath 定位删除按钮
+        String removeBtnXpath = String.format("(//a[@class='cart_delete'])[%d]",index);
+        try {
+            clickElement(By.xpath(removeBtnXpath));
+        } catch (Exception e) {
+            System.out.println("第一次尝试删除失败，尝试备用方案...");
+            // 备用方案：使用 data-product-id 属性
+            try {
+                WebElement deleteBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//a[@data-product-id='%d']", index))));
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
+                Thread.sleep(200);
+                js.executeScript("arguments[0].dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));", deleteBtn);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException("删除产品失败", e);
+            }
+        }
     }
 }

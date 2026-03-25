@@ -33,8 +33,8 @@ public class NavComponent extends BasePage {
     }
 
     public ProductsPage clickProducts() {
-//        driver.findElement(linkProducts).click();
-        clickElementJS(linkProducts);
+        // 优先使用普通点击，导航链接通常不会被遮挡
+        clickElement(linkProducts);
         return new ProductsPage(driver);
     }
 

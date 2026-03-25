@@ -20,6 +20,7 @@ public class TestData {
 
     //LoginCredential
     public static final String EMAIL = "jiexiang0113@gmail.com"; //valid email
+    public static final String EMAIL_CREATE = "test" + System.currentTimeMillis() + "@automationexercise.com"; //for new registration
     public static final String INVALID_EMAIL = "jiexiang@gmail.com";
     public static final String INVALID_PASSWORD = "1234567890";
 

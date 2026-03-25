@@ -31,14 +31,14 @@ public class RegisterLoginPage extends BasePage{
     }
 
     public AccountInfoPage clickSignupButton(){
-        clickElementJS(SignupButton);
+        clickElement(SignupButton);
         return new AccountInfoPage(driver);
     }
 
     public HomePage login(String email, String password){
         sendKeysToElement(LoginEmailInput, email);
         sendKeysToElement(passwordInput, password);
-        clickElementJS(loginButton);
+        clickElement(loginButton);
         return new HomePage(driver);
     }
 

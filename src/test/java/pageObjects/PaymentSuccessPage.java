@@ -13,4 +13,17 @@ public class PaymentSuccessPage extends BasePage{
     public boolean isSuccessAlertExist(){
         return isElementPresent(successAlert);
     }
+
+    public void clickDownloadInvoice(){
+        By btnDownloadInvoice = By.id("download_invoice_button");
+        if(isElementPresent(btnDownloadInvoice)){
+            clickElement(btnDownloadInvoice);
+        }
+    }
+
+    public HomePage clickContinueShoppingFromSuccess(){
+        By btnContinue = By.xpath("//a[normalize-space()='Continue Shopping']");
+        clickElement(btnContinue);
+        return new HomePage(driver);
+    }
 }

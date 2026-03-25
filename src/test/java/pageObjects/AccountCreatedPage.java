@@ -17,7 +17,7 @@ public class AccountCreatedPage extends BasePage{
     }
 
     public HomePage clickButtonContinue(){
-        clickElementJS(buttonContinue);
+        clickElement(buttonContinue);
         return new HomePage(driver);
     }
 }

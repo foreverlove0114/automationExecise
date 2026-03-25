@@ -2,6 +2,8 @@ package pageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductDetailsPage extends BasePage{
     public ProductDetailsPage(WebDriver driver) {
@@ -39,29 +41,68 @@ public class ProductDetailsPage extends BasePage{
     }
 
     public void clickAddToCart(){
-        clickElementJS(btnAddToCart);
+        clickElement(btnAddToCart);
     }
 
     public CartPage clickLinkViewCart(){
-        clickElementJS(linkViewCart);
+        clickElement(linkViewCart);
         return new CartPage(driver);
     }
 
     public boolean isWriteReviewVisible(){
-        return isElementPresent(linkWriteReview);
+        // 先滚动到评论区域
+        try {
+            WebElement reviewLink = wait.until(ExpectedConditions.presenceOfElementLocated(linkWriteReview));
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", reviewLink);
+            Thread.sleep(300);
+            return reviewLink.isDisplayed();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public void enterReviewDetails(String name, String email, String review){
+        // 确保表单区域可见
+        try {
+            WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(inputName));
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", nameField);
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
         sendKeysToElement(inputName, name);
         sendKeysToElement(inputEmail, email);
         sendKeysToElement(inputReview, review);
     }
 
     public void clickSubmitReview(){
-        clickElementJS(btnSubmitReview);
+        // 使用 JS 点击提交按钮，避免可能的遮挡问题
+        try {
+            WebElement submitBtn = wait.until(ExpectedConditions.elementToBeClickable(btnSubmitReview));
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", submitBtn);
+            Thread.sleep(200);
+            js.executeScript("arguments[0].dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));", submitBtn);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Failed to click submit review button", e);
+        }
     }
 
     public boolean isReviewSuccessMessageVisible(){
-        return isElementPresent(alertReviewSuccess);
+        try {
+            // 等待成功消息出现，可能需要一点时间
+            WebElement successMsg = wait.until(ExpectedConditions.visibilityOfElementLocated(alertReviewSuccess));
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", successMsg);
+            Thread.sleep(200);
+            return successMsg.isDisplayed();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            return false;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

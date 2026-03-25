@@ -36,13 +36,19 @@ public class HomePage extends BasePage{
     private final By headingCategory = By.xpath("//h2[normalize-space()='Category']");
     private final By categoryWomen = By.xpath("//a[normalize-space()='Women']");
     private final By dressLink = By.xpath("//div[@id='Women']//a[contains(text(),'Dress')]");
+    private final By headingRecommendedItem = By.xpath("//h2[normalize-space()='recommended items']");
+    
+    // 推荐商品轮播图中的第一个产品（当前 active 的 item）
+    private final By firstRecommendedProduct = By.xpath("(//div[@class='item active']//div[@class='col-sm-4'])[1]");
+    private final By firstRecommendedAddToCartBtn = By.xpath("(//div[@class='item active']//a[@data-product-id])[1]");
+    private final By recommendedItemsContainer = By.id("recommended-item-carousel");
 
     public boolean isHomePageVisible(){
         return isElementPresent(HomePageTitle);
     }
 
     public RegisterLoginPage clickSignupLogin(){
-        clickElementJS(Signup_Login_Link);
+        clickElement(Signup_Login_Link);
         return new RegisterLoginPage(driver);
     }
 
@@ -51,27 +57,27 @@ public class HomePage extends BasePage{
     }
 
     public AccountDeletedPage clickDeleteAccount(){
-        clickElementJS(linkDeleteAccount);
+        clickElement(linkDeleteAccount);
         return new AccountDeletedPage(driver);
     }
 
     public RegisterLoginPage logout(){
-        clickElementJS(linkLogout);
+        clickElement(linkLogout);
         return new RegisterLoginPage(driver);
     }
 
     public ContactUsPage clickContactUs(){
-        clickElementJS(linkContactUs);
+        clickElement(linkContactUs);
         return new ContactUsPage(driver);
     }
 
     public TestCasesPage clickNavigateToTestCasesPage(){
-        clickElementJS(buttonTestCases);
+        clickElement(buttonTestCases);
         return new TestCasesPage(driver);
     }
 
     public ProductsPage clickNavigateToProductPage(){
-        clickElementJS(linkProducts);
+        clickElement(linkProducts);
         return new ProductsPage(driver);
     }
 
@@ -85,7 +91,7 @@ public class HomePage extends BasePage{
 
     public void subscribe(String text){
         sendKeysToElement(emailSubscriptionInput,text);
-        clickElementJS(clickSubscription);
+        clickElement(clickSubscription);
     }
 
     public boolean checkSubscription(){
@@ -93,7 +99,7 @@ public class HomePage extends BasePage{
     }
 
     public CartPage navigateToCart(){
-        clickElementJS(linkCart);
+        clickElement(linkCart);
         return new CartPage(driver);
     }
 
@@ -102,7 +108,8 @@ public class HomePage extends BasePage{
         Random random = new Random();
         int randomIndex = random.nextInt(viewBtns.size());
         WebElement randomBtn = viewBtns.get(randomIndex);
-        clickElementJS(randomBtn);
+        // 使用 JS 点击 WebElement
+        js.executeScript("arguments[0].click();", randomBtn);
         return new ProductDetailsPage(driver);
     }
 
@@ -111,11 +118,71 @@ public class HomePage extends BasePage{
     }
 
     public void clickCategoryWomen(){
-        clickElementJS(categoryWomen);
+        clickElement(categoryWomen);
     }
 
     public CategoryProductPage clickDressLink(){
-        clickElementJS(dressLink);
+        clickElement(dressLink);
         return new CategoryProductPage(driver);
+    }
+
+    public void scrollToRecommendItems(){
+        scrollDownUntilText(headingRecommendedItem);
+    }
+
+    public boolean isHeadingRecommendedItemsExist(){
+        return isElementPresent(headingRecommendedItem);
+    }
+
+    // 点击推荐商品区域的第一个"Add to Cart"按钮
+    public void clickFirstRecommendedProductAddToCart(){
+        // 等待轮播图中的 active item 加载完成
+        waitForElementVisible(firstRecommendedProduct);
+        // 优先使用普通点击，如果失败则使用 JS 点击（轮播图可能有动画）
+        clickElement(firstRecommendedAddToCartBtn);
+    }
+
+    // 可选：如果需要特定位置的推荐商品，可以指定索引
+    public void clickRecommendedProductByIndex(int index){
+        By productBtn = By.xpath(String.format("(//div[@class='item active']//a[@data-product-id])[%d]", index));
+        waitForElementVisible(productBtn);
+        clickElement(productBtn);
+    }
+
+    // 验证推荐商品区域可见
+    public boolean isRecommendedItemsVisible(){
+        return isElementPresent(recommendedItemsContainer);
+    }
+
+    // 滚动到页面底部
+    public void scrollToBottom(){
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    // 滚动到页面顶部
+    public void scrollToTop(){
+        js.executeScript("window.scrollTo(0, 0)");
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    // 点击右下角箭头按钮向上滚动
+    public void clickScrollUpArrow(){
+        By scrollUpArrow = By.id("scrollUp");
+        waitForElementVisible(scrollUpArrow);
+        clickElement(scrollUpArrow);
+    }
+
+    // 验证首页标题文本可见
+    public boolean isHomePageTitleVisible(){
+        return isElementPresent(HomePageTitle);
     }
 }

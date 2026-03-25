@@ -18,14 +18,13 @@ public class PaymentPage extends BasePage{
         super(driver);
     }
 
-    public PaymentSuccessPage makePayment(String nameOnCard, String CartNum, String CVC, String ExpirationMM,String ExpirationYYYY){
+    public PaymentSuccessPage makePayment(String nameOnCard, String CartNum, String CVC, String ExpirationMM, String ExpirationYYYY){
         wait.until(ExpectedConditions.urlContains("payment"));
-        driver.navigate().refresh();
-        sendKeysToElement(textNameOnCard,nameOnCard);
-        sendKeysToElement(textCartNum,CartNum);
-        sendKeysToElement(textCVC,CVC);
-        sendKeysToElement(textExpirationMM,ExpirationMM);
-        sendKeysToElement(getTextExpirationYYYY,ExpirationYYYY);
+        sendKeysToElement(textNameOnCard, nameOnCard);
+        sendKeysToElement(textCartNum, CartNum);
+        sendKeysToElement(textCVC, CVC);
+        sendKeysToElement(textExpirationMM, ExpirationMM);
+        sendKeysToElement(getTextExpirationYYYY, ExpirationYYYY);
         clickElement(btnConfirmOrder);
         return new PaymentSuccessPage(driver);
     }

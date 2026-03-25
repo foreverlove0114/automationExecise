@@ -32,7 +32,7 @@ public class ContactUsPage extends BasePage{
 
     public void uploadFileAndSubmit(String file){
         sendKeysToElement(fileUpload, file);
-        clickElementJS(buttonSubmit);
+        clickElement(buttonSubmit);
     }
 
     public boolean isFormSubmittedSuccessfully(){
@@ -40,7 +40,7 @@ public class ContactUsPage extends BasePage{
     }
 
     public HomePage navigateToHomePageAndVerify(){
-        clickElementJS(buttonBackToHome);
+        clickElement(buttonBackToHome);
         return new HomePage(driver);
     }
 }

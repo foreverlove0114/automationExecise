@@ -17,6 +17,6 @@ public class AccountDeletedPage extends BasePage{
     }
 
     public void clickButtonContinue(){
-        clickElementJS(buttonContinue);
+        clickElement(buttonContinue);
     }
 }

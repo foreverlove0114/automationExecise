@@ -14,8 +14,8 @@ public class BasePage {
 
     protected WebDriver driver;
     protected WebDriverWait wait;
+    protected WebDriverWait shortWait;
     protected JavascriptExecutor js;
-    // 实例化组件
     public NavComponent nav;
     public FooterComponent footer;
     public CategoryBrandsComponent category;
@@ -23,10 +23,9 @@ public class BasePage {
     public BasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        this.shortWait = new WebDriverWait(driver, Duration.ofSeconds(3));
         this.js = (JavascriptExecutor) driver;
     }
-
-    // ==================== 统一使用 By 定位器的方法 ====================
 
     protected void waitForElementVisible(By locator){
         wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
@@ -36,48 +35,63 @@ public class BasePage {
         wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    /**
+     * 主点击方法 - 使用 JS 触发真实点击事件
+     * 结合 scroll + dispatchEvent 触发完整的鼠标事件链
+     */
     protected void clickElement(By locator) {
-        try{
-            driver.findElement(locator).click();
-        } catch (ElementClickInterceptedException e) {
-            System.out.println("普通点击失败，尝试使用 JS 点击: " + locator.toString());
-            clickElementJS(locator);
+        try {
+            // 等待元素存在并可见
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            // 滚动到元素位置
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+            // 短暂等待确保滚动完成且页面稳定
+            Thread.sleep(200);
+            
+            // 使用 dispatchEvent 触发真实的 click 事件（包含冒泡）
+            js.executeScript(
+                "var element = arguments[0]; " +
+                "element.dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));",
+                element
+            );
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Click interrupted", e);
+        } catch (Exception e) {
+            System.out.println("点击失败：" + locator.toString() + " - " + e.getMessage());
+            throw new RuntimeException("Failed to click element: " + locator, e);
         }
     }
 
-    protected void clickElementJS(By locator) {
-        waitForElementVisible(locator);
-        js.executeScript("arguments[0].click();", driver.findElement(locator));
-    }
-
-    protected void clickElementJS(WebElement element) {
-        wait.until(ExpectedConditions.visibilityOf(element));
-        js.executeScript("arguments[0].click();", element);
+    /**
+     * Simple click for special cases
+     */
+    protected void clickElementSimple(By locator) {
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(locator));
+        element.click();
     }
 
     protected void sendKeysToElement(By locator, String text){
-        waitForElementVisible(locator);
-        WebElement element = driver.findElement(locator);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
         element.clear();
         element.sendKeys(text);
     }
 
     protected boolean isElementPresent(By locator){
         try{
-            waitForElementVisible(locator);
-            return driver.findElement(locator).isDisplayed();
+            WebElement element = shortWait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return element.isDisplayed();
         }catch (Exception e){
             return false;
         }
     }
 
     protected void selectByVisibleText(By locator, String text){
-        waitForElementVisible(locator);
-        Select select = new Select(driver.findElement(locator));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        Select select = new Select(element);
         select.selectByVisibleText(text);
     }
-
-    // ==================== 通用页面操作方法 ====================
 
     public void handleAlertWithClickOK(){
         wait.until(ExpectedConditions.alertIsPresent());
@@ -88,39 +102,31 @@ public class BasePage {
     }
 
     public void scrollDownUntilText(By locator){
-        waitForElementVisible(locator);
-        js.executeScript("arguments[0].scrollIntoView()", driver.findElement(locator));
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+        js.executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
     }
 
     public void addProductToCartByIndex(int index){
-        // 使用多种策略定位 Add to cart 按钮
-        // 策略1: 通过 productinfo 区域中的 add-to-cart 按钮
         By addToCartBtn = By.xpath(String.format("(//div[@class='productinfo text-center']//a[contains(@class,'add-to-cart')])[%d]", index));
-        // 策略2: 通过 data-product-id 属性
         By altAddToCartBtn = By.xpath(String.format("(//a[@data-product-id])[%d]", index));
-        // 产品容器用于滚动
         By product = By.xpath(String.format("(//div[@class='productinfo text-center'])[%d]", index));
-
-        // 先滚动到产品位置
+    
         scrollDownUntilText(product);
-
-        // 尝试点击，如果失败则使用备用策略
+    
         try {
-            waitForElementVisible(addToCartBtn);
-            clickElementJS(addToCartBtn);
+            clickElement(addToCartBtn);
         } catch (Exception e) {
             System.out.println("主 xpath 失败，尝试备用 xpath...");
-            waitForElementVisible(altAddToCartBtn);
-            clickElementJS(altAddToCartBtn);
+            clickElement(altAddToCartBtn);
         }
     }
-
+    
     public void clickContinueShopping(){
-        clickElementJS(By.xpath("//button[normalize-space()='Continue Shopping']"));
+        clickElement(By.xpath("//button[normalize-space()='Continue Shopping']"));
     }
-
+    
     public CartPage clickLinkViewCart(){
-        clickElementJS(By.xpath("//u[normalize-space()='View Cart']"));
+        clickElement(By.xpath("//u[normalize-space()='View Cart']"));
         return new CartPage(driver);
     }
 }

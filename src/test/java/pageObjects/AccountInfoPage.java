@@ -34,13 +34,15 @@ public class AccountInfoPage extends BasePage{
     }
 
     public void fillInAccountInfo(String password, String day, String month, String year){
-        clickElementJS(genderRadio);
+        // Radio button 可能需要 JS 点击，因为某些网站的自定义样式
+        clickElement(genderRadio);
         sendKeysToElement(passwordInput, password);
         selectByVisibleText(daySelect, day);
         selectByVisibleText(monthSelect, month);
         selectByVisibleText(yearSelect, year);
-        clickElementJS(checkboxNewsletter);
-        clickElementJS(checkboxOffer);
+        // Checkbox 优先使用普通点击
+        clickElement(checkboxNewsletter);
+        clickElement(checkboxOffer);
     }
 
     public void fillInAddressInfo(
@@ -67,7 +69,17 @@ public class AccountInfoPage extends BasePage{
     }
 
     public AccountCreatedPage clickCreateAccountButton(){
-        clickElementJS(buttonCreateAccount);
+        clickElement(buttonCreateAccount);
         return new AccountCreatedPage(driver);
+    }
+
+    // 简化版填写账户信息（仅密码）
+    public void fillAccountInfo(String password){
+        sendKeysToElement(passwordInput, password);
+    }
+
+    // 别名方法，方便调用
+    public AccountCreatedPage clickCreateAccount(){
+        return clickCreateAccountButton();
     }
 }
