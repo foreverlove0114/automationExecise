@@ -87,22 +87,22 @@ public class CartPage extends BasePage{
     }
 
     public void removeProductByID(int index){
-        // 使用更精确的 xpath 定位删除按钮
-        String removeBtnXpath = String.format("(//a[@class='cart_delete'])[%d]",index);
+        // 直接使用 data-product-id 属性定位删除按钮（更可靠）
+        By deleteBtnLocator = By.xpath(String.format("//a[@data-product-id='%d']", index));
         try {
-            clickElement(By.xpath(removeBtnXpath));
+            // 等待元素存在
+            WebElement deleteBtn = wait.until(ExpectedConditions.presenceOfElementLocated(deleteBtnLocator));
+            // 滚动到元素位置
+            js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
+            Thread.sleep(300);
+            // 使用 dispatchEvent 触发点击
+            js.executeScript("arguments[0].dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));", deleteBtn);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("删除产品失败 - 中断异常", e);
         } catch (Exception e) {
-            System.out.println("第一次尝试删除失败，尝试备用方案...");
-            // 备用方案：使用 data-product-id 属性
-            try {
-                WebElement deleteBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(String.format("//a[@data-product-id='%d']", index))));
-                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", deleteBtn);
-                Thread.sleep(200);
-                js.executeScript("arguments[0].dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));", deleteBtn);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException("删除产品失败", e);
-            }
+            System.out.println("删除产品失败：" + deleteBtnLocator + " - " + e.getMessage());
+            throw new RuntimeException("无法删除产品，元素未找到：" + deleteBtnLocator, e);
         }
     }
 }

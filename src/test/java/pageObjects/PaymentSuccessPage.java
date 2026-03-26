@@ -15,14 +15,14 @@ public class PaymentSuccessPage extends BasePage{
     }
 
     public void clickDownloadInvoice(){
-        By btnDownloadInvoice = By.id("download_invoice_button");
+        By btnDownloadInvoice = By.xpath("//a[normalize-space()='Download Invoice']");
         if(isElementPresent(btnDownloadInvoice)){
             clickElement(btnDownloadInvoice);
         }
     }
 
     public HomePage clickContinueShoppingFromSuccess(){
-        By btnContinue = By.xpath("//a[normalize-space()='Continue Shopping']");
+        By btnContinue = By.xpath("//a[normalize-space()='Continue']");
         clickElement(btnContinue);
         return new HomePage(driver);
     }

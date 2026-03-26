@@ -78,7 +78,7 @@ public class BaseClass {
         }
 
         setDriver(driver);
-        // 设置隐式等待为0，完全依赖显式等待
+        // 设置隐式等待为 0，完全依赖显式等待
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         getDriver().get("https://automationexercise.com/");

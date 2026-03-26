@@ -20,6 +20,7 @@ public class TC17_removeProducts extends BaseClass {
         cp.removeProductByID(1);
         Thread.sleep(500);
         cp.removeProductByID(2);
+        Thread.sleep(500);
         //8. Verify that product is removed from the cart
         Assert.assertTrue(cp.isCartEmptyAlertPresent());
     }

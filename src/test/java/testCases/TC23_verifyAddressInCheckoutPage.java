@@ -37,7 +37,17 @@ public class TC23_verifyAddressInCheckoutPage extends BaseClass {
         logger.info("***** Entered signup details *****");
         
         //6. Complete account creation
-        aip.fillAccountInfo(TestData.PASSWORD);
+        aip.fillInAccountInfo(TestData.PASSWORD,TestData.DAY,TestData.MONTH,TestData.YEAR);
+        aip.fillInAddressInfo(TestData.FIRST_NAME,
+                TestData.LAST_NAME,
+                TestData.COMPANY,
+                TestData.ADDRESS1,
+                TestData.ADDRESS2,
+                TestData.COUNTRY,
+                TestData.STATE,
+                TestData.CITY,
+                TestData.ZIPCODE,
+                randomNumber());
         AccountCreatedPage acp = aip.clickCreateAccount();
         
         //7. Verify 'ACCOUNT CREATED!' and click 'Continue' button

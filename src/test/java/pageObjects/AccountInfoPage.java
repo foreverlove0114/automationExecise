@@ -74,9 +74,9 @@ public class AccountInfoPage extends BasePage{
     }
 
     // 简化版填写账户信息（仅密码）
-    public void fillAccountInfo(String password){
-        sendKeysToElement(passwordInput, password);
-    }
+//    public void fillAccountInfo(String password){
+//        sendKeysToElement(passwordInput, password);
+//    }
 
     // 别名方法，方便调用
     public AccountCreatedPage clickCreateAccount(){

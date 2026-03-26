@@ -62,8 +62,16 @@ public class ProductsPage extends BasePage{
         List<WebElement> viewProducts = driver.findElements(allViewProduct);
         // 检查列表是否为空
         if (!viewProducts.isEmpty()) {
-            // 点击第一个 - 使用普通点击，View Product 按钮通常不会被遮挡
-            viewProducts.get(0).click();
+            // 使用 JS dispatchEvent 点击，避免可能的遮挡问题
+            WebElement firstViewBtn = viewProducts.get(0);
+            try {
+                js.executeScript("arguments[0].scrollIntoView({block: 'center'});", firstViewBtn);
+                Thread.sleep(200);
+                js.executeScript("arguments[0].dispatchEvent(new MouseEvent('click', {bubbles: true, cancelable: true, view: window}));", firstViewBtn);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException("Failed to click View Product button", e);
+            }
         } else {
             throw new RuntimeException("未能找到任何 'View Product' 链接");
         }
