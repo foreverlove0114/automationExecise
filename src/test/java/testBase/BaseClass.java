@@ -2,12 +2,7 @@ package testBase;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -52,17 +47,33 @@ public class BaseClass {
         logger = LogManager.getLogger(this.getClass());
         WebDriver driver = null;
 
+        // 检测是否在 CI 环境
+        boolean isCI = System.getenv("JENKINS_URL") != null ||
+                "jenkins".equals(System.getProperty("test.env"));
+        boolean headless = "true".equals(System.getProperty("headless")) || isCI;
+
         switch (browser.toLowerCase()){
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setAcceptInsecureCerts(true);
                 chromeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+
+                if (headless) {
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--window-size=1920,1080");
+                }
                 driver = new ChromeDriver(chromeOptions);
                 break;
 
             case "firefox":
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setAcceptInsecureCerts(true);
+                if (headless) {
+                    firefoxOptions.addArguments("--headless");
+                }
                 driver = new FirefoxDriver(firefoxOptions);
                 break;
 
@@ -70,6 +81,9 @@ public class BaseClass {
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.setAcceptInsecureCerts(true);
                 edgeOptions.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+                if (headless) {
+                    edgeOptions.addArguments("--headless=new");
+                }
                 driver = new EdgeDriver(edgeOptions);
                 break;
 
@@ -78,11 +92,15 @@ public class BaseClass {
         }
 
         setDriver(driver);
-        // 设置隐式等待为 0，完全依赖显式等待
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(0));
         getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
         getDriver().get("https://automationexercise.com/");
-        getDriver().manage().window().maximize();
+
+        if (!headless) {
+            getDriver().manage().window().maximize();
+        } else {
+            getDriver().manage().window().setSize(new Dimension(1920, 1080));
+        }
     }
 
     @AfterMethod(alwaysRun = true)
