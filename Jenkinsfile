@@ -2,16 +2,14 @@ pipeline {
     agent any
 
     tools {
-        maven 'Maven-3.9'  // Jenkins 全局配置的名称
-        jdk 'JDK-21'       // Jenkins 全局配置的名称
+        maven 'Maven-3.9'
+        jdk 'JDK-21'
     }
 
     environment {
-        // 从 Jenkins 凭证注入
         TEST_PASSWORD = credentials('test-password')
         TEST_EMAIL_VALID = credentials('test-email-valid')
-
-        // 报告目录
+        MAVEN_OPTS = '-Xmx1024m'
         REPORT_DIR = 'reports'
         SCREENSHOT_DIR = 'screenshots'
     }
@@ -19,29 +17,38 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                checkout scm  // 自动从 GitHub 拉取代码
+                checkout scm
             }
         }
 
         stage('Build & Test') {
             steps {
-                sh """
-                    mvn clean test \
-                        -Dsurefire.suiteXmlFiles=testNG.xml \
-                        -Dtest.env=jenkins \
-                        -Dbrowser=chrome \
-                        -Dheadless=true
-                """
+                bat '''
+                    @echo off
+                    echo ====================================
+                    echo Running Maven Tests on Windows
+                    echo ====================================
+                    call mvn --version
+                    call java -version
+                    call mvn clean test -Dsurefire.suiteXmlFiles=testNG.xml -Dtest.env=jenkins -Dbrowser=chrome -Dheadless=true
+                    if %ERRORLEVEL% NEQ 0 (
+                        echo Tests failed with error code: %ERRORLEVEL%
+                        exit /b %ERRORLEVEL%
+                    )
+                '''
             }
         }
 
         stage('Publish Reports') {
+            when {
+                expression { currentBuild.result == null || currentBuild.result == 'SUCCESS' }
+            }
             steps {
                 publishHTML([
-                    allowMissing: false,
+                    allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
-                    reportDir: "${REPORT_DIR}",
+                    reportDir: 'reports',
                     reportFiles: '*.html',
                     reportName: 'Test Automation Report'
                 ])
@@ -51,9 +58,26 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: "${REPORT_DIR}/**/*.html, ${SCREENSHOT_DIR}/**/*.png",
+            archiveArtifacts artifacts: 'reports/**/*.html, screenshots/**/*.png',
+                           allowEmptyArchive: true,
+                           fingerprint: true
+            
+            junit allowEmptyResults: true,
+                  testResults: 'target/surefire-reports/TEST-*.xml'
+        }
+
+        success {
+            echo 'All tests passed!'
+        }
+
+        failure {
+            echo 'Tests failed. Check console output for details.'
+            archiveArtifacts artifacts: 'reports/**/*.html, screenshots/**/*.png',
                            allowEmptyArchive: true
-            testNG(reportFilenamePattern: 'target/surefire-reports/testng-results.xml')
+        }
+
+        unstable {
+            echo 'Tests are unstable.'
         }
     }
 }
