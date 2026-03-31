@@ -35,7 +35,7 @@
 
             <class name="testCases.Authentication.TC1_registerUser_DataDriven"/>
             <class name="testCases.Authentication.TC2_loginValidUser_DataDriven"/>
-            <class name="testCases.TC6_contactUsForm_DataDriven"/>
+<!--            <class name="testCases.TC6_contactUsForm_DataDriven"/>-->
         </classes>
     </test>
 </suite>

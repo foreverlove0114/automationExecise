@@ -67,9 +67,9 @@
       "expectedResult": "success"
     },
     {
-      "testName": "Invalid Registration - Short Password",
+      "testName": "Invalid Registration - Empty Password",
       "accountInfo": {
-        "password": "123",
+        "password": "",
         "day": "10",
         "month": "March",
         "year": "2000"

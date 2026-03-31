@@ -79,3 +79,61 @@
 2026-03-31 21:12:16 INFO  TC6_contactUsForm_DataDriven:34 - Expected Result: failure
 2026-03-31 21:12:16 INFO  TC6_contactUsForm_DataDriven:40 - ***** HomePage Visible *****
 2026-03-31 21:12:17 INFO  TC6_contactUsForm_DataDriven:48 - ***** Text Get In Touch Present *****
+2026-03-31 21:34:23 INFO  TC1_registerUser_DataDriven:29 - ***** Starting: Valid Registration - Singapore *****
+2026-03-31 21:34:23 INFO  TC1_registerUser_DataDriven:30 - Expected Result: success
+2026-03-31 21:34:25 INFO  TC1_registerUser_DataDriven:41 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:34:26 INFO  TC1_registerUser_DataDriven:51 - ***** Navigated to AccountInfoPage *****
+2026-03-31 21:34:31 INFO  TC1_registerUser_DataDriven:84 - ***** Account Created Successfully *****
+2026-03-31 21:34:36 INFO  TC1_registerUser_DataDriven:93 - ***** Account Deleted Successfully *****
+2026-03-31 21:34:36 INFO  TC1_registerUser_DataDriven:111 - ***** Completed: Valid Registration - Singapore *****
+2026-03-31 21:34:40 INFO  TC1_registerUser_DataDriven:29 - ***** Starting: Valid Registration - United States *****
+2026-03-31 21:34:40 INFO  TC1_registerUser_DataDriven:30 - Expected Result: success
+2026-03-31 21:34:42 INFO  TC1_registerUser_DataDriven:41 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:34:44 INFO  TC1_registerUser_DataDriven:51 - ***** Navigated to AccountInfoPage *****
+2026-03-31 21:34:48 INFO  TC1_registerUser_DataDriven:84 - ***** Account Created Successfully *****
+2026-03-31 21:34:53 INFO  TC1_registerUser_DataDriven:93 - ***** Account Deleted Successfully *****
+2026-03-31 21:34:53 INFO  TC1_registerUser_DataDriven:111 - ***** Completed: Valid Registration - United States *****
+2026-03-31 21:34:57 INFO  TC1_registerUser_DataDriven:29 - ***** Starting: Valid Registration - Canada *****
+2026-03-31 21:34:57 INFO  TC1_registerUser_DataDriven:30 - Expected Result: success
+2026-03-31 21:34:58 INFO  TC1_registerUser_DataDriven:41 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:35:01 INFO  TC1_registerUser_DataDriven:51 - ***** Navigated to AccountInfoPage *****
+2026-03-31 21:35:06 INFO  TC1_registerUser_DataDriven:84 - ***** Account Created Successfully *****
+2026-03-31 21:35:10 INFO  TC1_registerUser_DataDriven:93 - ***** Account Deleted Successfully *****
+2026-03-31 21:35:10 INFO  TC1_registerUser_DataDriven:111 - ***** Completed: Valid Registration - Canada *****
+2026-03-31 21:35:16 INFO  TC1_registerUser_DataDriven:29 - ***** Starting: Invalid Registration - Empty Password *****
+2026-03-31 21:35:16 INFO  TC1_registerUser_DataDriven:30 - Expected Result: failure
+2026-03-31 21:35:17 INFO  TC1_registerUser_DataDriven:41 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:35:19 INFO  TC1_registerUser_DataDriven:51 - ***** Navigated to AccountInfoPage *****
+2026-03-31 21:35:24 INFO  TC1_registerUser_DataDriven:99 - ***** Registration Failed as Expected *****
+2026-03-31 21:35:24 INFO  TC1_registerUser_DataDriven:111 - ***** Completed: Invalid Registration - Empty Password *****
+2026-03-31 21:35:28 INFO  TC2_loginValidUser_DataDriven:31 - ***** Starting: Valid Login *****
+2026-03-31 21:35:28 INFO  TC2_loginValidUser_DataDriven:32 - Description: 使用有效的邮箱和密码登录
+2026-03-31 21:35:28 INFO  TC2_loginValidUser_DataDriven:33 - Expected Result: success
+2026-03-31 21:35:30 INFO  TC2_loginValidUser_DataDriven:43 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:35:35 INFO  TC2_loginValidUser_DataDriven:54 - ***** Login Successful *****
+2026-03-31 21:35:37 INFO  TC2_loginValidUser_DataDriven:58 - ***** Logged out successfully *****
+2026-03-31 21:35:37 INFO  TC2_loginValidUser_DataDriven:71 - ***** Completed: Valid Login *****
+2026-03-31 21:35:40 INFO  TC2_loginValidUser_DataDriven:31 - ***** Starting: Invalid Email Format *****
+2026-03-31 21:35:40 INFO  TC2_loginValidUser_DataDriven:32 - Description: 使用无效的邮箱格式
+2026-03-31 21:35:40 INFO  TC2_loginValidUser_DataDriven:33 - Expected Result: failure
+2026-03-31 21:35:44 INFO  TC2_loginValidUser_DataDriven:43 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:35:48 INFO  TC2_loginValidUser_DataDriven:64 - ***** Login Failed as Expected *****
+2026-03-31 21:35:51 INFO  TC2_loginValidUser_DataDriven:71 - ***** Completed: Invalid Email Format *****
+2026-03-31 21:35:54 INFO  TC2_loginValidUser_DataDriven:31 - ***** Starting: Wrong Password *****
+2026-03-31 21:35:54 INFO  TC2_loginValidUser_DataDriven:32 - Description: 使用正确的邮箱但错误的密码
+2026-03-31 21:35:54 INFO  TC2_loginValidUser_DataDriven:33 - Expected Result: failure
+2026-03-31 21:35:56 INFO  TC2_loginValidUser_DataDriven:43 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:36:05 INFO  TC2_loginValidUser_DataDriven:64 - ***** Login Failed as Expected *****
+2026-03-31 21:36:05 INFO  TC2_loginValidUser_DataDriven:71 - ***** Completed: Wrong Password *****
+2026-03-31 21:36:08 INFO  TC2_loginValidUser_DataDriven:31 - ***** Starting: Non-existent User *****
+2026-03-31 21:36:08 INFO  TC2_loginValidUser_DataDriven:32 - Description: 使用不存在的用户邮箱
+2026-03-31 21:36:08 INFO  TC2_loginValidUser_DataDriven:33 - Expected Result: failure
+2026-03-31 21:36:10 INFO  TC2_loginValidUser_DataDriven:43 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:36:15 INFO  TC2_loginValidUser_DataDriven:64 - ***** Login Failed as Expected *****
+2026-03-31 21:36:15 INFO  TC2_loginValidUser_DataDriven:71 - ***** Completed: Non-existent User *****
+2026-03-31 21:36:19 INFO  TC2_loginValidUser_DataDriven:31 - ***** Starting: Empty Credentials *****
+2026-03-31 21:36:19 INFO  TC2_loginValidUser_DataDriven:32 - Description: 使用空的邮箱和密码
+2026-03-31 21:36:19 INFO  TC2_loginValidUser_DataDriven:33 - Expected Result: failure
+2026-03-31 21:36:21 INFO  TC2_loginValidUser_DataDriven:43 - ***** Navigated to RegisterLoginPage *****
+2026-03-31 21:36:25 INFO  TC2_loginValidUser_DataDriven:64 - ***** Login Failed as Expected *****
+2026-03-31 21:36:28 INFO  TC2_loginValidUser_DataDriven:71 - ***** Completed: Empty Credentials *****
