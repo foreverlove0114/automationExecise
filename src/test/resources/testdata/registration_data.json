@@ -1,0 +1,92 @@
+{
+  "testCases": [
+    {
+      "testName": "Valid Registration - Singapore",
+      "accountInfo": {
+        "password": "test123",
+        "day": "14",
+        "month": "January",
+        "year": "2002"
+      },
+      "addressInfo": {
+        "firstName": "Jacon",
+        "lastName": "Yu",
+        "company": "Ant",
+        "address1": "Shibuya",
+        "address2": "Tokyo",
+        "country": "Singapore",
+        "state": "Tokyo",
+        "city": "Tokyo",
+        "zipcode": "12345",
+        "mobile": "1234567890"
+      },
+      "expectedResult": "success"
+    },
+    {
+      "testName": "Valid Registration - United States",
+      "accountInfo": {
+        "password": "password456",
+        "day": "25",
+        "month": "December",
+        "year": "1995"
+      },
+      "addressInfo": {
+        "firstName": "John",
+        "lastName": "Smith",
+        "company": "Tech Corp",
+        "address1": "123 Main St",
+        "address2": "Apt 4B",
+        "country": "United States",
+        "state": "California",
+        "city": "Los Angeles",
+        "zipcode": "90001",
+        "mobile": "9876543210"
+      },
+      "expectedResult": "success"
+    },
+    {
+      "testName": "Valid Registration - Canada",
+      "accountInfo": {
+        "password": "canada789",
+        "day": "1",
+        "month": "July",
+        "year": "1988"
+      },
+      "addressInfo": {
+        "firstName": "Emma",
+        "lastName": "Wilson",
+        "company": "Maple Ltd",
+        "address1": "456 Queen St",
+        "address2": "Suite 100",
+        "country": "Canada",
+        "state": "Ontario",
+        "city": "Toronto",
+        "zipcode": "M5H 2N2",
+        "mobile": "5551234567"
+      },
+      "expectedResult": "success"
+    },
+    {
+      "testName": "Invalid Registration - Short Password",
+      "accountInfo": {
+        "password": "123",
+        "day": "10",
+        "month": "March",
+        "year": "2000"
+      },
+      "addressInfo": {
+        "firstName": "Test",
+        "lastName": "User",
+        "company": "Test Co",
+        "address1": "Test Address",
+        "address2": "",
+        "country": "India",
+        "state": "Delhi",
+        "city": "New Delhi",
+        "zipcode": "110001",
+        "mobile": "9998887777"
+      },
+      "expectedResult": "failure"
+    }
+  ]
+}

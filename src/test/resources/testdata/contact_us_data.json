@@ -1,0 +1,49 @@
+{
+  "testCases": [
+    {
+      "testName": "Valid Contact Form Submission",
+      "name": "Jacon Yu",
+      "email": "jiexiang0113@gmail.com",
+      "subject": "Product Inquiry",
+      "message": "I would like to know more about your products. Please send me a catalog.",
+      "attachmentFile": "IMG_9234.jpg",
+      "expectedResult": "success"
+    },
+    {
+      "testName": "Contact Form - Complaint",
+      "name": "John Smith",
+      "email": "john.smith@example.com",
+      "subject": "Order Complaint",
+      "message": "I received a damaged product. Order #12345. Please help resolve this issue.",
+      "attachmentFile": "",
+      "expectedResult": "success"
+    },
+    {
+      "testName": "Contact Form - Feedback",
+      "name": "Emma Wilson",
+      "email": "emma.wilson@test.com",
+      "subject": "Website Feedback",
+      "message": "Great website! Very user-friendly and easy to navigate.",
+      "attachmentFile": "feedback_screenshot.png",
+      "expectedResult": "success"
+    },
+    {
+      "testName": "Contact Form - Empty Message",
+      "name": "Test User",
+      "email": "test@example.com",
+      "subject": "Test",
+      "message": "",
+      "attachmentFile": "",
+      "expectedResult": "failure"
+    },
+    {
+      "testName": "Contact Form - Invalid Email",
+      "name": "Bad Email",
+      "email": "not-an-email",
+      "subject": "Test Subject",
+      "message": "This is a test message.",
+      "attachmentFile": "",
+      "expectedResult": "failure"
+    }
+  ]
+}

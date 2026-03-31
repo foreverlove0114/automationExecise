@@ -1,0 +1,39 @@
+{
+  "testCases": [
+    {
+      "testName": "Valid Login",
+      "email": "jiexiang0113@gmail.com",
+      "password": "test123",
+      "expectedResult": "success",
+      "description": "使用有效的邮箱和密码登录"
+    },
+    {
+      "testName": "Invalid Email Format",
+      "email": "invalid-email-format",
+      "password": "test123",
+      "expectedResult": "failure",
+      "description": "使用无效的邮箱格式"
+    },
+    {
+      "testName": "Wrong Password",
+      "email": "jiexiang0113@gmail.com",
+      "password": "wrongpassword123",
+      "expectedResult": "failure",
+      "description": "使用正确的邮箱但错误的密码"
+    },
+    {
+      "testName": "Non-existent User",
+      "email": "nonexistent@example.com",
+      "password": "anypassword",
+      "expectedResult": "failure",
+      "description": "使用不存在的用户邮箱"
+    },
+    {
+      "testName": "Empty Credentials",
+      "email": "",
+      "password": "",
+      "expectedResult": "failure",
+      "description": "使用空的邮箱和密码"
+    }
+  ]
+}

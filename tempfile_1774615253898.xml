@@ -1,0 +1,53 @@
+<build>
+    <plugins>
+        <!-- 现有插件... -->
+        
+        <!-- Surefire 插件配置（用于 CI 测试） -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+            <configuration>
+                <suiteXmlFiles>
+                    <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                </suiteXmlFiles>
+                <properties>
+                    <property>
+                        <name>usedefaultlisteners</name>
+                        <value>false</value>
+                    </property>
+                    <property>
+                        <name>listener</name>
+                        <value>org.uncommons.reportng.HTMLReporter,org.uncommons.reportng.JUnitXMLReporter</value>
+                    </property>
+                </properties>
+                <reportsDirectory>${project.basedir}/reports</reportsDirectory>
+                <testFailureIgnore>true</testFailureIgnore>
+                <argLine>
+                    -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                </argLine>
+                <systemPropertyVariables>
+                    <browser>${browser}</browser>
+                    <headless>${headless}</headless>
+                    <test.env>${test.env}</test.env>
+                </systemPropertyVariables>
+            </configuration>
+            <dependencies>
+                <dependency>
+                    <groupId>org.aspectj</groupId>
+                    <artifactId>aspectjweaver</artifactId>
+                    <version>${aspectj.version}</version>
+                </dependency>
+            </dependencies>
+        </plugin>
+    </plugins>
+</build>
+
+<properties>
+    <!-- 添加这些属性 -->
+    <suiteXmlFile>testNG.xml</suiteXmlFile>
+    <browser>chrome</browser>
+    <headless>false</headless>
+    <test.env>local</test.env>
+    <aspectj.version>1.9.21</aspectj.version>
+</properties>
