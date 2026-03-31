@@ -10,7 +10,7 @@
 <!--            <class name="testCases.Authentication.TC2_loginValidUser"/>-->
 <!--            <class name="testCases.Authentication.TC3_loginInvalidUser"/>-->
 <!--            <class name="testCases.Authentication.TC4_logoutUser"/>-->
-            <class name="testCases.Authentication.TC5_registerDuplicateUser"/>
+<!--            <class name="testCases.Authentication.TC5_registerDuplicateUser"/>-->
 <!--            <class name="testCases.TC6_contactUsForm"/>-->
 <!--            <class name="testCases.TC7_verifyTestCasesPage"/>-->
 <!--            <class name="testCases.TC8_verifyAllProductsAndProductDetails"/>-->
@@ -25,13 +25,17 @@
 <!--            <class name="testCases.TC17_removeProducts"/>-->
 <!--            <class name="testCases.TC18_viewCategoryProducts"/>-->
 <!--            <class name="testCases.TC19_ViewCartBrandProducts"/>-->
-            <class name="testCases.TC20_searchProducts_VerifyCart"/>
+<!--            <class name="testCases.TC20_searchProducts_VerifyCart"/>-->
 <!--            <class name="testCases.TC21_addReviewOnProduct"/>-->
 <!--            <class name="testCases.TC22_addToCartFromRecommended"/>-->
 <!--            <class name="testCases.TC23_verifyAddressInCheckoutPage"/>-->
 <!--            <class name="testCases.TC24_downloadInvoiceAfterPurchaseOrder"/>-->
 <!--            <class name="testCases.TC25_verifyScrollUpUsingArrowButton"/>-->
 <!--            <class name="testCases.TC26_verifyScrollUpWithoutArrowButton"/>-->
+
+            <class name="testCases.Authentication.TC1_registerUser_DataDriven"/>
+            <class name="testCases.Authentication.TC2_loginValidUser_DataDriven"/>
+            <class name="testCases.TC6_contactUsForm_DataDriven"/>
         </classes>
     </test>
 </suite>

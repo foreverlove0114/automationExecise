@@ -53,4 +53,12 @@ public class RegisterLoginPage extends BasePage{
     public boolean isDuplicateUserAlertPresent(){
         return isElementPresent(duplicateUserAlert);
     }
+
+    /**
+     * Check if login error message is visible
+     * @return true if error message is displayed
+     */
+    public boolean isLoginErrorVisible(){
+        return isElementPresent(loginFailedAlert);
+    }
 }
